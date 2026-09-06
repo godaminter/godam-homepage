@@ -56,7 +56,7 @@
     { "@type": "Question", "name": "왜 사업자등록번호를 받나요?", "acceptedAnswer": { "@type": "Answer", "text": "실제 시공업체에만 계정을 드리기 위해서입니다. 견적서에는 고객의 이름과 연락처, 현장 주소가 담기기 때문에 아무나 계정을 만들 수 있으면 안 됩니다. 받은 정보는 계정 발급과 연락 용도로만 쓰고 외부에 제공하지 않습니다." } },
     { "@type": "Question", "name": "계정은 언제 받나요?", "acceptedAnswer": { "@type": "Answer", "text": "대표가 직접 확인하고 계정을 만들어 문자와 카카오톡으로 보내드립니다. 영업시간에 접수하시면 보통 1시간 안에 전달되고, 늦은 시간에는 다음 날 오전에 보내드립니다." } },
     { "@type": "Question", "name": "설치가 필요한 프로그램인가요?", "acceptedAnswer": { "@type": "Answer", "text": "아니요. 고견적은 설치 없이 인터넷 주소만 열면 바로 쓰는 웹 프로그램입니다. 태블릿, 휴대폰, 컴퓨터 어디서든 같은 화면으로 작동합니다." } },
-    { "@type": "Question", "name": "컴퓨터를 잘 못 다루는데 쓸 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "업종을 고르시면 그 업종에 맞는 단가표가 채워진 상태로 계정을 드립니다. 금액만 우리 업체에 맞게 고치면 바로 견적을 낼 수 있고, 앱 안에 화면별 가이드가 들어 있습니다. 유료로 전환하시면 전문 강사가 사업장으로 방문해 세팅과 실습을 도와드립니다." } },
+    { "@type": "Question", "name": "컴퓨터를 잘 못 다루는데 쓸 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "종합 인테리어 견적 항목 73개를 채워서 드립니다. 단가만 우리 업체 기준으로 입력하면 바로 견적을 낼 수 있고, 앱 안에 화면별 가이드가 들어 있습니다. 업종별 전용 항목 세트는 순차적으로 추가하고 있습니다. 유료로 전환하시면 전문 강사가 사업장으로 방문해 세팅과 실습을 도와드립니다." } },
     { "@type": "Question", "name": "고객 스크린이 무엇인가요?", "acceptedAnswer": { "@type": "Answer", "text": "사장님이 견적을 수정하면 고객이 보고 있는 태블릿·휴대폰 화면에 실시간으로 반영되는 기능입니다. 항목과 금액이 투명하게 보여 상담 신뢰도가 올라가고, 그 자리에서 계약으로 이어지기 쉽습니다." } },
     { "@type": "Question", "name": "요금은 어떻게 되나요?", "acceptedAnswer": { "@type": "Answer", "text": "무료 체험은 견적 10건까지 0원입니다. 이후 베이직 월 47,000원(견적 히스토리 20건), 프로 월 57,000원(365건)이며 부가가치세가 포함된 금액입니다. 표시된 금액이 그대로 카드에 청구되고 별도로 붙는 비용은 없습니다." } },
     { "@type": "Question", "name": "해지하려면 어떻게 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "약정이 없습니다. 구독 관리 화면에서 자동결제 해지 버튼을 누르면 즉시 해지되고 다음 회차부터 청구되지 않습니다. 해지해도 이미 결제한 이용 기간은 만료일까지 그대로 사용할 수 있습니다." } }
@@ -66,13 +66,15 @@
 
 <style>
 :root{
-  --blue:#2233E8; --blue-mid:#3344f5; --ink:#0d1240; --ink-soft:#3a4070;
+  --blue:#2233E8; --blue-mid:#3344f5; --blue-deep:#1522B8; --ink:#0d1240; --ink-soft:#3a4070;
   --muted:#5a6080; --dim:#9098c0;
   --orange:#F05A1A; --orange-light:#fff2ec;
   --tint:#f4f5ff; --tint2:#eaecff; --bg:#ffffff; --border:#dde0f5;
   --kakao:#FEE500; --kakao-ink:#3C1E1E; --green:#22c55e; --red:#d92d20;
   --r:16px; --r-sm:10px;
   --shadow:0 4px 24px rgba(34,51,232,.08);
+  --shadow-lift:0 2px 6px rgba(13,18,64,.06),0 18px 40px -18px rgba(34,51,232,.28);
+  --grid-line:rgba(34,51,232,.055);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
@@ -81,8 +83,8 @@ img{max-width:100%}
 a{color:inherit}
 .container{max-width:1080px;margin:0 auto;padding:0 22px}
 section{padding:96px 0}
-h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.3}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:800;color:var(--blue);letter-spacing:.08em;margin-bottom:14px;text-transform:uppercase}
+h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-height:1.24}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:-.01em;margin-bottom:14px}
 .eyebrow::before{content:'';width:22px;height:3px;background:var(--orange);border-radius:2px}
 .lead{font-size:17px;color:var(--muted);margin-top:14px;max-width:620px}
 
@@ -90,7 +92,7 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-hei
 .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .header .container{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none;font-weight:900;font-size:21px;letter-spacing:-.02em}
-.logo-badge{width:34px;height:34px;border-radius:9px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-.02em;box-shadow:0 3px 10px rgba(34,51,232,.35)}
+.logo-badge{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,var(--blue-mid),var(--blue-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-.02em;box-shadow:0 4px 12px -2px rgba(34,51,232,.55),0 1px 0 rgba(255,255,255,.3) inset}
 .logo b{color:var(--ink)}
 .nav{display:flex;gap:24px;font-size:14.5px;font-weight:600;color:var(--ink-soft)}
 .nav a{text-decoration:none;transition:color .15s}
@@ -99,8 +101,10 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-hei
 .btn:hover{transform:translateY(-2px)}
 .btn-kakao{background:var(--kakao);color:var(--kakao-ink);padding:11px 20px;font-size:14.5px;box-shadow:0 4px 14px rgba(254,229,0,.45)}
 .btn-kakao:hover{filter:brightness(.97);box-shadow:0 8px 20px rgba(254,229,0,.55)}
-.btn-blue{background:var(--blue);color:#fff;padding:15px 28px;font-size:16px;box-shadow:0 6px 20px rgba(34,51,232,.35)}
-.btn-blue:hover{box-shadow:0 12px 28px rgba(34,51,232,.45)}
+.btn-blue{background:linear-gradient(180deg,var(--blue-mid),var(--blue));color:#fff;padding:15px 28px;font-size:16px;
+  box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 8px 22px -6px rgba(34,51,232,.55)}
+.btn-blue:hover{box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 14px 30px -8px rgba(34,51,232,.65)}
+.btn-blue:active{transform:translateY(0) scale(.985)}
 .btn-head{background:var(--blue);color:#fff;padding:11px 20px;font-size:14.5px;box-shadow:0 4px 14px rgba(34,51,232,.32)}
 .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--border);padding:14px 26px;font-size:15px}
 .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
@@ -123,10 +127,17 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-hei
 }
 
 /* ---------- 히어로 ---------- */
-.hero{background:linear-gradient(180deg,var(--tint) 0%,#fff 88%);padding:78px 0 64px;overflow:hidden;position:relative}
+.hero{background:linear-gradient(180deg,var(--tint) 0%,#fff 88%);padding:84px 0 70px;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(120% 90% at 50% 0%,#000 30%,transparent 78%)}
+.hero::after{content:'';position:absolute;right:-140px;top:-140px;width:460px;height:460px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(34,51,232,.10),transparent 70%);pointer-events:none}
 .hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
-.hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-.04em;line-height:1.22}
-.hero h1 .hl{color:var(--blue)}
+.hero h1{font-size:clamp(36px,5.6vw,60px);font-weight:900;letter-spacing:-.055em;line-height:1.14}
+.hero h1 .hl{background:linear-gradient(100deg,var(--blue) 15%,#4f5dff 55%,var(--orange) 110%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;position:relative;white-space:nowrap}
 .hero h1 .dot{color:var(--orange)}
 .hero-sub{font-size:18px;color:var(--muted);margin:20px 0 28px;max-width:490px}
 .hero-sub b{color:var(--ink);font-weight:700}
@@ -139,7 +150,10 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-hei
 
 /* 태블릿 목업 */
 .mockup-wrap{position:relative}
-.mockup{background:var(--ink);border-radius:26px;padding:12px;box-shadow:0 30px 70px rgba(13,18,64,.28),0 4px 16px rgba(13,18,64,.15);transform:rotate(1.2deg)}
+.mockup{background:linear-gradient(160deg,#181f52,var(--ink));border-radius:26px;padding:12px;
+  box-shadow:0 40px 80px -14px rgba(13,18,64,.45),0 4px 16px rgba(13,18,64,.15),0 0 0 1px rgba(255,255,255,.06) inset;
+  transform:rotate(1.2deg);animation:mockFloat 7s ease-in-out infinite}
+@keyframes mockFloat{0%,100%{transform:rotate(1.2deg) translateY(0)}50%{transform:rotate(1.2deg) translateY(-8px)}}
 .mock-screen{background:#f0f2fa;border-radius:16px;overflow:hidden;font-size:12px}
 .mock-head{background:var(--blue);color:#fff;padding:13px 16px;display:flex;align-items:center;justify-content:space-between}
 .mock-head .mh-title{font-weight:900;font-size:14px}
@@ -167,13 +181,19 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-hei
 }
 
 /* ---------- 숫자 띠 ---------- */
-.numbers{background:#fff;padding:0;border-bottom:1px solid var(--border)}
-.numbers .container{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:34px;padding-bottom:34px}
-.num-item{text-align:center;padding:6px 8px}
-.num-item .n{font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1.2}
-.num-item .n small{font-size:14px;font-weight:800;margin-left:2px;color:var(--ink)}
-.num-item .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:4px;line-height:1.5}
-@media (max-width:680px){.numbers .container{grid-template-columns:1fr 1fr;gap:18px}}
+.numbers{background:linear-gradient(180deg,#10173F,var(--ink));padding:0;position:relative;overflow:hidden}
+.numbers::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:52px 52px;mask-image:linear-gradient(180deg,transparent,#000 40%,transparent)}
+.numbers .container{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:30px;padding-bottom:30px}
+.num-item{text-align:center;padding:6px 8px;position:relative}
+.num-item+.num-item::before{content:'';position:absolute;left:-5px;top:14%;bottom:14%;width:1px;background:rgba(255,255,255,.1)}
+.num-item .n{font-size:clamp(24px,3.2vw,34px);font-weight:900;letter-spacing:-.04em;color:#fff;font-variant-numeric:tabular-nums;line-height:1.15}
+.num-item .n small{font-size:14px;font-weight:800;margin-left:2px;color:#9aa3d8}
+.num-item:nth-child(2) .n{color:#FF9A66}
+.num-item .l{font-size:12.5px;color:#9aa3d8;font-weight:600;margin-top:4px;line-height:1.5}
+@media (max-width:680px){.numbers .container{grid-template-columns:1fr 1fr;gap:16px}
+  .num-item:nth-child(3)::before{display:none}}
 
 /* ---------- 고민 스트립 ---------- */
 .pain{background:var(--ink);color:#fff;padding:76px 0}
@@ -238,7 +258,10 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-hei
 .su-why h4{font-size:14px;font-weight:900;margin-bottom:7px}
 .su-why p{font-size:13.5px;color:#b9beea;line-height:1.72}
 
-.su-form{background:#fff;color:var(--ink);border-radius:22px;padding:34px 32px;box-shadow:0 26px 60px rgba(0,0,0,.32)}
+.su-form{position:relative;background:#fff;color:var(--ink);border-radius:22px;padding:36px 32px 34px;
+  box-shadow:0 40px 90px -18px rgba(0,0,0,.5);overflow:hidden}
+.su-form::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,var(--blue),#6a76ff 50%,var(--orange))}
 .su-form h3{font-size:21px;font-weight:900;letter-spacing:-.025em}
 .su-form .sf-sub{font-size:13.5px;color:var(--muted);margin-top:6px;margin-bottom:22px}
 .sf-row{margin-bottom:15px}
@@ -246,7 +269,7 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;line-hei
 .sf-lab{display:block;font-size:13px;font-weight:800;margin-bottom:6px;letter-spacing:-.01em}
 .sf-lab .req{color:var(--orange);margin-left:3px}
 .sf-in{width:100%;border:1.5px solid var(--border);background:#fbfbff;border-radius:11px;padding:13px 14px;font-size:15.5px;font-family:inherit;color:var(--ink);outline:none;transition:border-color .15s,background .15s}
-.sf-in:focus{border-color:var(--blue);background:#fff}
+.sf-in:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(34,51,232,.12)}
 .sf-in::placeholder{color:#b3b9d8}
 .sf-in.bad{border-color:var(--red);background:#fff5f4}
 select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6080' stroke-width='2.4' stroke-linecap='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:38px}
@@ -256,7 +279,7 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .sf-agree{display:flex;gap:10px;align-items:flex-start;margin:6px 0 18px;font-size:13px;color:var(--ink-soft);line-height:1.6}
 .sf-agree input{width:19px;height:19px;margin-top:1px;flex:0 0 auto;accent-color:var(--blue);cursor:pointer}
 .sf-agree a{color:var(--blue);font-weight:700}
-.sf-submit{width:100%;background:var(--blue);color:#fff;border:none;border-radius:13px;padding:17px;font-size:17px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:-.02em;box-shadow:0 8px 22px rgba(34,51,232,.35);transition:filter .15s,transform .12s}
+.sf-submit{width:100%;background:linear-gradient(180deg,var(--blue-mid),var(--blue));color:#fff;border:none;border-radius:13px;padding:17px;font-size:17px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:-.02em;box-shadow:0 8px 22px rgba(34,51,232,.35);transition:filter .15s,transform .12s}
 .sf-submit:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.05)}
 .sf-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .sf-foot{margin-top:13px;font-size:12.5px;color:var(--muted);text-align:center;line-height:1.6}
@@ -283,8 +306,8 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 /* ---------- 기능 ---------- */
 .features{background:#fff}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
-.feat-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--r);padding:28px 26px;transition:transform .18s,box-shadow .18s}
-.feat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.feat-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--r);padding:28px 26px;transition:transform .18s,box-shadow .18s,border-color .18s}
+.feat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:#c9d0f2}
 .feat-card .fc-icon{width:46px;height:46px;border-radius:13px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:16px;box-shadow:0 4px 12px rgba(34,51,232,.3)}
 .feat-card:nth-child(3n) .fc-icon{background:var(--orange);box-shadow:0 4px 12px rgba(240,90,26,.3)}
 .feat-card h3{font-size:17.5px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
@@ -313,7 +336,10 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .pricing-head .lead{margin-left:auto;margin-right:auto}
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px;align-items:stretch}
 .price-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:32px 26px;position:relative;display:flex;flex-direction:column}
-.price-card.pro{border-color:var(--blue);box-shadow:0 16px 44px rgba(34,51,232,.16)}
+.price-card.pro{border:1.5px solid transparent;background:
+  linear-gradient(#fff,#fff) padding-box,
+  linear-gradient(150deg,var(--blue),#6a76ff 45%,var(--orange)) border-box;
+  box-shadow:0 24px 54px -16px rgba(34,51,232,.35)}
 .price-card.free{background:linear-gradient(180deg,#fffaf6 0%,#fff 60%);border-color:#ffcbae}
 .price-card .pop{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:12px;font-weight:900;border-radius:999px;padding:6px 18px;letter-spacing:.04em;white-space:nowrap}
 .price-card.pro .pop{background:var(--blue)}
@@ -396,7 +422,8 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .faq{background:var(--tint)}
 .faq-list{margin-top:42px;max-width:760px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;gap:12px}
 details{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden}
-details[open]{border-color:var(--blue)}
+details{border-left:3px solid transparent;transition:border-color .15s}
+details[open]{border-color:var(--blue);border-left-color:var(--blue);box-shadow:0 8px 24px -14px rgba(34,51,232,.35)}
 summary{cursor:pointer;padding:19px 22px;font-weight:800;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:'+';font-size:21px;color:var(--blue);font-weight:600;transition:transform .2s}
@@ -502,7 +529,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       <div class="hero-trust">
         <span class="trust-item">설치 없는 웹 프로그램</span>
         <span class="trust-item">태블릿·휴대폰 최적화</span>
-        <span class="trust-item">업종별 단가표 기본 제공</span>
+        <span class="trust-item">견적 항목 73개 기본 제공</span>
       </div>
     </div>
     <div class="mockup-wrap">
@@ -635,7 +662,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       <div class="how-card reveal">
         <div class="hc-n">3</div>
         <h3>단가만 고쳐서 바로 견적</h3>
-        <p>고르신 업종의 단가표가 채워진 상태로 시작합니다. 금액을 우리 업체 기준으로 바꾸면 첫 견적서가 나갑니다.</p>
+        <p>종합 인테리어 <b>견적 항목 73개</b>를 채워서 드립니다. 단가만 우리 업체 기준으로 입력하면 첫 견적서가 나갑니다.</p>
         <span class="hc-time">10분</span>
       </div>
     </div>
@@ -652,7 +679,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       <div class="su-points">
         <div class="su-point">카드 등록·약정·자동결제 전환이 <b>없습니다</b></div>
         <div class="su-point">무료 10건을 다 써도 <b>만들어 둔 견적과 고객 링크는 그대로</b> 남습니다</div>
-        <div class="su-point">업종을 고르시면 그 업종 단가표가 채워진 채로 시작합니다</div>
+        <div class="su-point">철거부터 마감까지 <b>견적 항목 73개</b>를 채워서 드립니다 — 단가만 입력하면 끝 (업종별 전용 세트는 준비 중)</div>
         <div class="su-point">계속 쓰고 싶으실 때만 결제하시면 됩니다</div>
       </div>
       <div class="su-why">
@@ -697,7 +724,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
         <div class="sf-row">
           <label class="sf-lab" for="sfTrade">주력 업종<span class="req">*</span></label>
           <select class="sf-in" id="sfTrade">
-            <option value="">선택해주세요 — 단가표가 채워진 채로 드립니다</option>
+            <option value="">선택해주세요 — 업종에 맞춰 안내해 드립니다</option>
             <option value="종합 인테리어">종합 인테리어</option>
             <option value="타일">타일</option>
             <option value="도배·장판">도배·장판</option>
@@ -839,7 +866,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
           <li>견적 작성 · 단가표 · 빠른시작 · 즐겨찾기</li>
           <li>고객 실시간 스크린 + 견적 공유 링크</li>
           <li>부가세·지불일정 자동 계산 · 계약서 생성</li>
-          <li>업종별 기본 단가표 제공</li>
+          <li>견적 항목 73개 기본 제공 — 단가만 입력</li>
           <li>카카오톡 1:1 지원</li>
           <li class="off">방문 교육은 유료 도입 시 제공</li>
         </ul>
@@ -955,7 +982,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       </details>
       <details>
         <summary>컴퓨터를 잘 못 다루는데 쓸 수 있나요?</summary>
-        <div class="faq-a">업종을 고르시면 그 업종에 맞는 <b>단가표가 채워진 상태</b>로 계정을 드립니다. 금액만 우리 업체에 맞게 고치면 바로 견적을 낼 수 있고, 앱 안에 화면별 가이드가 들어 있어 처음에도 헤매지 않습니다. 유료로 전환하시면 전문 강사가 사업장으로 방문해 세팅과 실습을 함께 해드립니다.</div>
+        <div class="faq-a">종합 인테리어 <b>견적 항목 73개</b>를 채워서 드립니다. 철거·설비·전기·목공·방수·타일·도장·도배·바닥재·창호·가구까지 들어 있어서, 단가만 우리 업체 기준으로 입력하면 바로 견적을 낼 수 있습니다. 항목이 미리 있으니 폐기물 운반·보양 같은 걸 <b>빼먹고 견적 내는 일</b>이 없어집니다. 앱 안에 화면별 가이드가 있어 처음에도 헤매지 않습니다. <b>업종별 전용 항목 세트(타일 전문형·도배 전문형 등)는 순차적으로 추가하고 있습니다.</b> 유료로 전환하시면 전문 강사가 사업장으로 방문해 세팅과 실습을 함께 해드립니다.</div>
       </details>
       <details>
         <summary>고객 스크린이 정확히 뭔가요?</summary>
@@ -963,7 +990,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       </details>
       <details>
         <summary>인테리어 업종만 쓸 수 있나요?</summary>
-        <div class="faq-a">아니요. 단가표와 카테고리를 직접 등록하는 방식이라 타일, 도배, 설비, 전기, 철거, 청소 등 견적서가 필요한 모든 업종에서 쓸 수 있습니다. 신청하실 때 업종을 골라주시면 그에 맞는 기본 구성으로 드립니다.</div>
+        <div class="faq-a">아니요. 단가표와 카테고리를 직접 등록하는 방식이라 타일, 도배, 설비, 전기, 철거, 청소 등 견적서가 필요한 모든 업종에서 쓸 수 있습니다. 신청하실 때 업종을 골라주시면 그에 맞게 안내해 드리고, 현재는 종합 인테리어 견적 항목 73개를 넣어 드립니다. 업종별 전용 항목 세트는 순차적으로 추가하고 있습니다.</div>
       </details>
       <details>
         <summary>베이직과 프로의 차이가 뭔가요?</summary>
@@ -1149,6 +1176,39 @@ const app = initializeApp({
 });
 const db = getDatabase(app);
 
+/* 접수 알림 브릿지 (Google Apps Script → 메일 + 구글시트)
+   · Firebase 저장이 끝난 뒤에 쏜다. 이게 실패해도 접수는 이미 끝나 있다.
+   · no-cors 라 응답을 읽을 수 없다. 성공 여부는 확인하지 않는다(확인할 필요도 없다).
+   · SECRET 은 이 파일에 노출되므로 완전한 비밀이 아니다 — 스캐너 차단용이다.
+     진짜 방어선은 Firebase 규칙이고, 여기가 뚫려도 계정은 만들어지지 않는다. */
+const NOTIFY_URL = 'https://script.google.com/macros/s/AKfycbxqwOFt21RJLGHOQ2ItlYa8aqxyrZOlG_0EZD42OkXzEHRBE59lWA0Vf_S8zGOcqi_8Ng/exec';
+const NOTIFY_SECRET = 'DRrx20yoF8tapRqZYRK6ZGTba_Xbj7-L';
+
+/* 어느 광고에서 들어왔는지 — ?ref= 또는 utm_source, 없으면 유입 도메인 */
+function trafficRef(){
+  try{
+    const q = new URLSearchParams(location.search);
+    const tag = q.get('ref') || q.get('utm_source') || q.get('utm_campaign');
+    if(tag) return String(tag).slice(0,60);
+    if(document.referrer){
+      try{ return 'ref:' + new URL(document.referrer).hostname; }catch(e){}
+    }
+  }catch(e){}
+  return 'direct';
+}
+
+function notifyLead(payload){
+  try{
+    // Content-Type 을 text/plain 으로 둬야 preflight 가 안 생긴다(no-cors 제약)
+    fetch(NOTIFY_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(Object.assign({ secret: NOTIFY_SECRET }, payload))
+    }).catch(()=>{});
+  }catch(e){}
+}
+
 const $ = id => document.getElementById(id);
 const OPEN_AT = Date.now();          // 사람은 폼을 3초 안에 채우지 못한다
 const THROTTLE_KEY = 'godam_lead_at';
@@ -1202,7 +1262,7 @@ async function submit(){
   if(!/^01[016789]\d{7,8}$/.test(phone)){ bad('sfPhone','errPhone','연락 가능한 휴대폰 번호를 적어주세요.', ok); ok = false; }
   if(!/^\d{10}$/.test(bizno)){ bad('sfBizno','errBizno','사업자등록번호 10자리를 적어주세요.', ok); ok = false; }
   else if(!biznoValid(bizno)){ bad('sfBizno','errBizno','사업자등록번호를 다시 확인해주세요. 자릿수는 맞지만 유효한 번호가 아닙니다.', ok); ok = false; }
-  if(!trade){ bad('sfTrade','errTrade','업종을 골라주세요. 그에 맞는 단가표를 채워서 드립니다.', ok); ok = false; }
+  if(!trade){ bad('sfTrade','errTrade','업종을 골라주세요. 그에 맞춰 안내해 드립니다.', ok); ok = false; }
   if(!agree){ showErr('errAll','개인정보 수집·이용에 동의해주셔야 계정을 발급할 수 있습니다.'); ok = false; }
   if(!ok) return;
 
@@ -1248,10 +1308,13 @@ async function submit(){
     }
   }
 
+  /* 대표에게 알림 — 접수는 이미 저장됐으므로 실패해도 그냥 넘어간다 */
+  notifyLead({ biz, ceo, phone, bizno, trade, ref: trafficRef() });
+
   try{ localStorage.setItem(THROTTLE_KEY, String(Date.now())); }catch(e){}
   $('sfFormWrap').style.display = 'none';
   $('sfDone').classList.add('show');
-  $('sfDone').scrollIntoView({ behavior:'smooth', block:'center' });
+  try{ $('sfDone').scrollIntoView({ behavior:'smooth', block:'center' }); }catch(e){}
 }
 
 $('sfSubmit').addEventListener('click', submit);
