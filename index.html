@@ -202,7 +202,7 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 /* ---------- 고민 스트립 ---------- */
 .pain{position:relative;color:#fff;padding:96px 0 88px;overflow:hidden;
   background:linear-gradient(180deg,#0D1240 0%,#080B26 55%,#05070F 100%)}
-.pain::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.7;
+.pain::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.7;animation:starTwinkle 3.2s ease-in-out infinite;
   background-image:radial-gradient(1px 1px at 12% 22%,rgba(255,255,255,.8) 50%,transparent 51%),
     radial-gradient(1.4px 1.4px at 31% 9%,rgba(255,255,255,.65) 50%,transparent 51%),
     radial-gradient(1px 1px at 48% 30%,rgba(255,255,255,.55) 50%,transparent 51%),
@@ -213,9 +213,13 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
     radial-gradient(1px 1px at 56% 5%,rgba(255,255,255,.6) 50%,transparent 51%)}
 .pain::after{content:'';position:absolute;left:-120px;bottom:-160px;width:560px;height:560px;pointer-events:none;
   background:radial-gradient(closest-side,rgba(255,176,84,.16),transparent 70%)}
-.pain .moon{position:absolute;top:52px;right:8%;width:54px;height:54px;border-radius:50%;pointer-events:none;
+.pain .moon{position:absolute;top:52px;right:8%;width:58px;height:58px;border-radius:50%;pointer-events:none;
   background:radial-gradient(circle at 34% 34%,#FFF7E0,#F4E3B2 62%,#D8C68F);
-  box-shadow:0 0 44px 12px rgba(255,240,190,.22)}
+  animation:moonGlow 3.4s ease-in-out infinite}
+@keyframes moonGlow{0%,100%{box-shadow:0 0 34px 8px rgba(255,240,190,.2)}50%{box-shadow:0 0 74px 26px rgba(255,240,190,.5)}}
+@keyframes starTwinkle{0%,100%{opacity:.45}50%{opacity:1}}
+.pain .star{position:absolute;border-radius:50%;background:#fff;pointer-events:none;animation:starBlink 2.4s ease-in-out infinite}
+@keyframes starBlink{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.6);box-shadow:0 0 8px 2px rgba(255,255,255,.5)}}
 .pain h2{color:#fff;text-align:center}
 .pain h2 .x{color:#fff;box-shadow:inset 0 -0.32em rgba(240,90,26,.45)}
 .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
@@ -224,6 +228,24 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .pc-time.late{color:#FFC98F;border-color:rgba(255,201,143,.35);background:rgba(255,176,84,.1)}
 .pain-close{text-align:center;margin-top:38px;font-size:19px;color:#aab2e0;letter-spacing:-.02em}
 .pain-close b{color:#fff;box-shadow:inset 0 -0.3em rgba(34,51,232,.55)}
+
+/* ── 항목 누락 섹션 ── */
+.missed{background:#fff;padding:96px 0}
+.missed-head{text-align:center;max-width:640px;margin:0 auto}
+.missed-head .lead{margin-left:auto;margin-right:auto}
+.missed-chips{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;max-width:720px;margin:36px auto 0}
+.m-chip{font-size:15px;font-weight:800;color:var(--ink);background:var(--tint);border:1.5px solid var(--border);border-radius:999px;padding:11px 20px;letter-spacing:-.02em;opacity:0;transform:scale(.3)}
+.missed-chips.in .m-chip{animation:chipSlam .5s cubic-bezier(.3,1.9,.4,1) forwards}
+.missed-chips.in .m-chip:nth-child(1){animation-delay:.05s}.missed-chips.in .m-chip:nth-child(2){animation-delay:.15s}
+.missed-chips.in .m-chip:nth-child(3){animation-delay:.25s}.missed-chips.in .m-chip:nth-child(4){animation-delay:.35s}
+.missed-chips.in .m-chip:nth-child(5){animation-delay:.45s}.missed-chips.in .m-chip:nth-child(6){animation-delay:.55s}
+.missed-chips.in .m-chip:nth-child(7){animation-delay:.65s}.missed-chips.in .m-chip:nth-child(8){animation-delay:.75s}
+.missed-chips.in .m-chip:nth-child(9){animation-delay:.85s}
+.m-chip{transition:transform .25s cubic-bezier(.22,1,.36,1),border-color .2s,box-shadow .2s}
+.m-chip:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 10px 22px -10px rgba(34,51,232,.35)}
+.missed-close{text-align:center;margin-top:34px;font-size:18px;color:var(--muted);letter-spacing:-.02em}
+.missed-close b{color:var(--ink);box-shadow:inset 0 -0.3em rgba(34,51,232,.15)}
+@media (max-width:640px){.m-chip{font-size:13.5px;padding:9px 15px}}
 .pain-card .pc-ico{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#AeB6FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
 .pain-card .pc-ico svg{width:21px;height:21px}
 .pain-card h3{font-size:17px;font-weight:800;margin-bottom:8px}
@@ -283,14 +305,15 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .how-card p{font-size:14px;color:var(--muted);line-height:1.7}
 .how-card .hc-time{display:inline-block;margin-top:14px;font-size:14px;font-weight:900;color:#fff;background:var(--blue);border-radius:999px;padding:7px 16px;letter-spacing:-.01em;box-shadow:0 6px 16px -6px rgba(34,51,232,.6);opacity:0;transform:scale(.4)}
 .how-card:nth-child(3) .hc-time{background:var(--orange);box-shadow:0 6px 16px -6px rgba(240,90,26,.6)}
-.how-card.in .hc-time{animation:chipSlam .55s cubic-bezier(.34,1.7,.5,1) forwards}
 .how-card.in:nth-child(1) .hc-time{animation-delay:.45s}
 .how-card.in:nth-child(2) .hc-time{animation-delay:.65s}
 .how-card.in:nth-child(3) .hc-time{animation-delay:.85s}
-@keyframes chipSlam{0%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.14)}100%{opacity:1;transform:scale(1)}}
-.how-card.in .hc-time::after{content:'';position:absolute;inset:0;border-radius:999px;animation:chipGlow 3.2s ease-in-out 1.6s infinite}
+@keyframes chipSlam{0%{opacity:0;transform:scale(.2) rotate(-10deg)}55%{opacity:1;transform:scale(1.38) rotate(3deg)}75%{transform:scale(.94)}100%{opacity:1;transform:scale(1) rotate(0)}}
+.how-card.in .hc-time::after{content:'';position:absolute;inset:0;border-radius:999px;animation:chipGlow 2.4s ease-in-out 1.6s infinite}
 .how-card .hc-time{position:relative}
-@keyframes chipGlow{0%,100%{box-shadow:0 0 0 0 rgba(34,51,232,0)}50%{box-shadow:0 0 0 5px rgba(34,51,232,.14)}}
+.how-card.in .hc-time{animation:chipSlam .55s cubic-bezier(.34,1.7,.5,1) forwards,chipBob 2.4s ease-in-out 1.8s infinite}
+@keyframes chipGlow{0%,100%{box-shadow:0 0 0 0 rgba(34,51,232,0)}50%{box-shadow:0 0 0 8px rgba(34,51,232,.22)}}
+@keyframes chipBob{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 @media (max-width:760px){.how-grid{grid-template-columns:1fr}}
 
 /* ---------- 가입 폼 ---------- */
@@ -304,14 +327,21 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .su-points{margin-top:26px;display:flex;flex-direction:column;gap:13px}
 .su-point{display:flex;gap:12px;font-size:15px;font-weight:600;color:#e6e9ff;line-height:1.65}
 .su-point>span{flex:1}
-.su-point::before{content:'✓';flex:0 0 24px;height:24px;border-radius:50%;background:var(--green);color:#062b13;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;margin-top:2px;transform:scale(0)}
-.su-points.in .su-point::before{animation:checkPop .5s cubic-bezier(.34,1.7,.5,1) forwards,checkPulse 3.6s ease-in-out 1.4s infinite}
+.su-point::before{content:'✓';flex:0 0 30px;height:30px;border-radius:50%;background:var(--green);color:#04230e;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-top:0;transform:scale(0);box-shadow:0 6px 14px -4px rgba(34,197,94,.6)}
+.su-points.in .su-point::before{animation:checkPop .6s cubic-bezier(.3,2.1,.4,1) forwards,checkPulse 2.6s ease-in-out 1.2s infinite}
+.su-point>span{opacity:0;transform:translateX(-14px)}
+.su-points.in .su-point>span{animation:ptSlide .55s cubic-bezier(.22,1,.36,1) forwards}
+.su-points.in .su-point:nth-child(1)>span{animation-delay:.2s}
+.su-points.in .su-point:nth-child(2)>span{animation-delay:.37s}
+.su-points.in .su-point:nth-child(3)>span{animation-delay:.54s}
+.su-points.in .su-point:nth-child(4)>span{animation-delay:.71s}
+@keyframes ptSlide{to{opacity:1;transform:none}}
 .su-points.in .su-point:nth-child(1)::before{animation-delay:.15s,1.4s}
 .su-points.in .su-point:nth-child(2)::before{animation-delay:.32s,1.7s}
 .su-points.in .su-point:nth-child(3)::before{animation-delay:.49s,2s}
 .su-points.in .su-point:nth-child(4)::before{animation-delay:.66s,2.3s}
-@keyframes checkPop{0%{transform:scale(0)}70%{transform:scale(1.35)}100%{transform:scale(1)}}
-@keyframes checkPulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.18)}}
+@keyframes checkPop{0%{transform:scale(0) rotate(-160deg)}62%{transform:scale(1.65) rotate(8deg)}82%{transform:scale(.92)}100%{transform:scale(1) rotate(0)}}
+@keyframes checkPulse{0%,100%{box-shadow:0 6px 14px -4px rgba(34,197,94,.6),0 0 0 0 rgba(34,197,94,.55)}55%{box-shadow:0 6px 14px -4px rgba(34,197,94,.6),0 0 0 11px rgba(34,197,94,0)}}
 .su-why{margin-top:26px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:14px 17px}
 .su-why summary{font-size:13.5px;font-weight:800;color:#cfd5ff;cursor:pointer;list-style:none}
 .su-why summary::before{content:'▸ ';color:#8b94d8}
@@ -676,7 +706,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
   <div class="container">
     <div>
       <span class="eyebrow">사업자번호만 있으면 됩니다</span>
-      <h1>고객이 믿는 견적서,<br>현장에서 <span class="hl">3분</span>이면 끝<span class="dot">.</span></h1>
+      <h1>고객이 믿는 견적서,<br>고객님 앞에서 <span class="hl">3분</span>이면 끝<span class="dot">.</span></h1>
       <p class="hero-sub">단가는 미리 등록해 두고 현장에선 <b>누르기만</b> 하세요. 부가세·계약서·수금·순이익까지, 고객이 보는 앞에서 견적이 완성됩니다.</p>
       <div class="hero-cta">
         <a class="btn btn-blue btn-lg" href="#start">무료로 시작하기</a>
@@ -737,6 +767,12 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
 <section class="pain">
   <div class="container">
     <div class="moon" aria-hidden="true"></div>
+    <span class="star" style="top:11%;left:16%;width:3px;height:3px;animation-delay:0s"></span>
+    <span class="star" style="top:22%;left:38%;width:2.5px;height:2.5px;animation-delay:.7s"></span>
+    <span class="star" style="top:8%;left:57%;width:3.5px;height:3.5px;animation-delay:1.3s"></span>
+    <span class="star" style="top:26%;left:72%;width:2.5px;height:2.5px;animation-delay:.4s"></span>
+    <span class="star" style="top:14%;left:86%;width:3px;height:3px;animation-delay:1.8s"></span>
+    <span class="star" style="top:34%;left:8%;width:2.5px;height:2.5px;animation-delay:1s"></span>
     <h2 class="reveal">아직도 견적서를 <span class="x">밤에 다시</span> 쓰시나요?</h2>
     <div class="pain-grid">
       <div class="pain-card reveal">
@@ -758,7 +794,30 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
         <p>먼저 도착한 견적서가 계약을 가져갑니다. 늦은 견적서는 비교 자료가 될 뿐입니다.</p>
       </div>
     </div>
-    <p class="pain-close reveal">고견적이면 — <b>견적은 현장에서 이미 끝났습니다.</b></p>
+    <p class="pain-close reveal">고견적이면 — <b>고객님 앞에서 이미 끝났습니다.</b></p>
+  </div>
+</section>
+
+<!-- ============ 항목 누락 = 그대로 손해 ============ -->
+<section class="missed">
+  <div class="container">
+    <div class="missed-head">
+      <span class="eyebrow">견적에서 돈이 새는 곳</span>
+      <h2 class="reveal">빠뜨린 항목은, 그대로 사장님 손해입니다</h2>
+      <p class="lead reveal">단가를 낮게 써서 손해 보는 게 아닙니다. 적는 걸 <b>깜빡해서</b> 손해 봅니다.</p>
+    </div>
+    <div class="missed-chips reveal" id="missedChips">
+      <span class="m-chip">폐기물 운반·처리</span>
+      <span class="m-chip">보양 작업</span>
+      <span class="m-chip">양중·자재 상차</span>
+      <span class="m-chip">잔재 정리</span>
+      <span class="m-chip">실리콘·코킹</span>
+      <span class="m-chip">걸레받이</span>
+      <span class="m-chip">문턱 철거</span>
+      <span class="m-chip">방수 테스트</span>
+      <span class="m-chip">부자재</span>
+    </div>
+    <p class="missed-close reveal">고견적 기본 항목 <b>73개</b>에 전부 들어 있습니다. 고르기만 하면 되니, <b>빠뜨릴 수가 없습니다.</b></p>
   </div>
 </section>
 
