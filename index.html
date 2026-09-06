@@ -250,14 +250,18 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .sv-card{background:#fff;color:var(--ink);border-radius:18px;padding:23px 25px;width:100%;max-width:430px;box-shadow:0 30px 70px -14px rgba(0,0,25,.5),0 0 0 1px rgba(255,255,255,.5)}
 .sv-card .svc-tag{font-size:10.5px;font-weight:900;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
 .svc-qty{display:inline-flex;align-items:center;gap:10px}
-.q-btn{width:22px;height:22px;border-radius:7px;background:var(--tint2);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;transition:transform .15s,background .15s}
-.q-btn.press{transform:scale(.82);background:var(--blue);color:#fff}
-.q-num{min-width:14px;text-align:center;font-variant-numeric:tabular-nums}
+.q-btn{position:relative;width:30px;height:30px;border-radius:9px;background:var(--tint2);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;transition:transform .12s,background .12s;box-shadow:inset 0 -2px 0 rgba(13,18,64,.08)}
+.q-btn.press{transform:scale(.62);background:var(--blue);color:#fff;box-shadow:0 0 0 4px rgba(34,51,232,.25)}
+.q-btn.press::after{content:'';position:absolute;inset:-4px;border-radius:13px;border:2.5px solid var(--blue);animation:qRing .55s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes qRing{0%{opacity:1;transform:scale(.7)}100%{opacity:0;transform:scale(2)}}
+.q-num.pop{animation:qPop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes qPop{0%{transform:scale(1)}40%{transform:scale(1.7);color:var(--blue)}100%{transform:scale(1)}}
+.q-num{min-width:20px;text-align:center;font-variant-numeric:tabular-nums;font-size:18px;font-weight:900;display:inline-block}
 .sy-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5EE39A;margin-right:7px;box-shadow:0 0 0 0 rgba(94,227,154,.55);animation:syPing 2.2s ease-out infinite}
 @keyframes syPing{0%{box-shadow:0 0 0 0 rgba(94,227,154,.55)}70%{box-shadow:0 0 0 9px rgba(94,227,154,0)}100%{box-shadow:0 0 0 0 rgba(94,227,154,0)}}
-#syCust.flash{animation:syFlash .7s ease}
-@keyframes syFlash{0%{box-shadow:0 0 0 0 rgba(94,227,154,.0)}25%{box-shadow:0 0 0 4px rgba(94,227,154,.5)}100%{box-shadow:0 0 0 0 rgba(94,227,154,0)}}
-#syAmt.tick,#syTotal.tick,#syQty2.tick{color:var(--blue);transition:color .3s}
+#syCust.flash{animation:syFlash .8s ease}
+@keyframes syFlash{0%{box-shadow:0 30px 70px -14px rgba(0,0,25,.5)}22%{box-shadow:0 0 0 6px rgba(94,227,154,.65),0 30px 70px -14px rgba(0,0,25,.5);transform:scale(1.02)}100%{box-shadow:0 30px 70px -14px rgba(0,0,25,.5)}}
+#syAmt.tick,#syTotal.tick,#syQty2.tick{color:var(--blue);animation:qPop .55s cubic-bezier(.34,1.56,.64,1)}
 .sv-card.owner .svc-tag{color:var(--orange)}
 .sv-card .svc-line{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--border);font-size:15.5px}
 .sv-card .svc-line:last-child{border-bottom:none}
@@ -273,10 +277,20 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
 .how-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--r);padding:30px 26px;position:relative}
 .how-card .hc-n{width:34px;height:34px;border-radius:10px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;margin-bottom:15px;box-shadow:0 4px 12px rgba(34,51,232,.3)}
+.how-card.in .hc-n{animation:chipSlam .5s cubic-bezier(.34,1.7,.5,1) both}
 .how-card:nth-child(3) .hc-n{background:var(--orange);box-shadow:0 4px 12px rgba(240,90,26,.3)}
 .how-card h3{font-size:17.5px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
 .how-card p{font-size:14px;color:var(--muted);line-height:1.7}
-.how-card .hc-time{display:inline-block;margin-top:12px;font-size:12px;font-weight:800;color:var(--blue);background:#fff;border:1px solid var(--border);border-radius:999px;padding:4px 12px}
+.how-card .hc-time{display:inline-block;margin-top:14px;font-size:14px;font-weight:900;color:#fff;background:var(--blue);border-radius:999px;padding:7px 16px;letter-spacing:-.01em;box-shadow:0 6px 16px -6px rgba(34,51,232,.6);opacity:0;transform:scale(.4)}
+.how-card:nth-child(3) .hc-time{background:var(--orange);box-shadow:0 6px 16px -6px rgba(240,90,26,.6)}
+.how-card.in .hc-time{animation:chipSlam .55s cubic-bezier(.34,1.7,.5,1) forwards}
+.how-card.in:nth-child(1) .hc-time{animation-delay:.45s}
+.how-card.in:nth-child(2) .hc-time{animation-delay:.65s}
+.how-card.in:nth-child(3) .hc-time{animation-delay:.85s}
+@keyframes chipSlam{0%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.14)}100%{opacity:1;transform:scale(1)}}
+.how-card.in .hc-time::after{content:'';position:absolute;inset:0;border-radius:999px;animation:chipGlow 3.2s ease-in-out 1.6s infinite}
+.how-card .hc-time{position:relative}
+@keyframes chipGlow{0%,100%{box-shadow:0 0 0 0 rgba(34,51,232,0)}50%{box-shadow:0 0 0 5px rgba(34,51,232,.14)}}
 @media (max-width:760px){.how-grid{grid-template-columns:1fr}}
 
 /* ---------- 가입 폼 ---------- */
@@ -290,7 +304,14 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .su-points{margin-top:26px;display:flex;flex-direction:column;gap:13px}
 .su-point{display:flex;gap:12px;font-size:15px;font-weight:600;color:#e6e9ff;line-height:1.65}
 .su-point>span{flex:1}
-.su-point::before{content:'✓';flex:0 0 23px;height:23px;border-radius:50%;background:var(--green);color:#062b13;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;margin-top:3px}
+.su-point::before{content:'✓';flex:0 0 24px;height:24px;border-radius:50%;background:var(--green);color:#062b13;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;margin-top:2px;transform:scale(0)}
+.su-points.in .su-point::before{animation:checkPop .5s cubic-bezier(.34,1.7,.5,1) forwards,checkPulse 3.6s ease-in-out 1.4s infinite}
+.su-points.in .su-point:nth-child(1)::before{animation-delay:.15s,1.4s}
+.su-points.in .su-point:nth-child(2)::before{animation-delay:.32s,1.7s}
+.su-points.in .su-point:nth-child(3)::before{animation-delay:.49s,2s}
+.su-points.in .su-point:nth-child(4)::before{animation-delay:.66s,2.3s}
+@keyframes checkPop{0%{transform:scale(0)}70%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes checkPulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.18)}}
 .su-why{margin-top:26px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:14px 17px}
 .su-why summary{font-size:13.5px;font-weight:800;color:#cfd5ff;cursor:pointer;list-style:none}
 .su-why summary::before{content:'▸ ';color:#8b94d8}
@@ -353,7 +374,31 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .feat-card .fc-icon{width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid var(--border);color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 1px 2px rgba(13,18,64,.05)}
 .feat-card .fc-icon svg{width:20px;height:20px}
 .feat-card h3{font-size:16.5px;font-weight:800;letter-spacing:-.02em;margin-bottom:7px}
-.feat-card p{font-size:14px;color:var(--muted);line-height:1.7}
+.feat-card p{font-size:14px;color:var(--muted);line-height:1.7;text-wrap:pretty}
+/* ── 기능별 아이콘 애니메이션 — 각 칸이 자기 기능을 몸짓으로 설명한다 ── */
+.feat-grid .feat-card .fc-icon svg{will-change:transform}
+.feat-grid .feat-card:nth-child(1) .fc-icon svg{animation:icoList 3.2s ease-in-out infinite}
+@keyframes icoList{0%,55%,100%{transform:translateY(0)}15%{transform:translateY(-2.5px)}30%{transform:translateY(1.5px)}}
+.feat-grid .feat-card:nth-child(2) .fc-icon svg{animation:icoZap 2.8s ease-in-out infinite}
+@keyframes icoZap{0%,42%,100%{transform:scale(1);opacity:1}46%{transform:scale(1.28);opacity:.55}50%{transform:scale(1.14);opacity:1}54%{transform:scale(1.22);opacity:.75}58%{transform:scale(1)}}
+.feat-grid .feat-card:nth-child(3) .fc-icon svg{animation:icoCalc 3.4s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes icoCalc{0%,60%,100%{transform:rotate(0)}68%{transform:rotate(-7deg)}76%{transform:rotate(6deg)}84%{transform:rotate(-3deg)}92%{transform:rotate(0)}}
+.feat-grid .feat-card:nth-child(4) .fc-icon svg{animation:icoHist 3.6s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes icoHist{0%,55%,100%{transform:rotate(0)}70%{transform:rotate(-350deg)}85%{transform:rotate(-360deg)}}
+.feat-grid .feat-card:nth-child(5) .fc-icon svg{animation:icoCoin 3.5s ease-in-out infinite}
+@keyframes icoCoin{0%,55%,100%{transform:rotateY(0)}75%{transform:rotateY(180deg)}95%{transform:rotateY(360deg)}}
+.feat-grid .feat-card:nth-child(6) .fc-icon svg{animation:icoStamp 3.3s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes icoStamp{0%,58%,100%{transform:scale(1)}66%{transform:scale(1.22) translateY(-3px)}72%{transform:scale(.92) translateY(1px)}78%{transform:scale(1)}}
+.feat-grid .feat-card:nth-child(7) .fc-icon svg{animation:icoSend 3.4s ease-in-out infinite}
+@keyframes icoSend{0%,52%,100%{transform:translate(0,0);opacity:1}62%{transform:translate(6px,-6px);opacity:0}63%{transform:translate(-7px,7px);opacity:0}74%{transform:translate(0,0);opacity:1}}
+.feat-grid .feat-card:nth-child(8) .fc-icon svg{animation:icoTag 3.2s ease-in-out infinite;transform-origin:22% 18%}
+@keyframes icoTag{0%,55%,100%{transform:rotate(0)}66%{transform:rotate(-13deg)}78%{transform:rotate(9deg)}90%{transform:rotate(-4deg)}}
+.feat-grid .feat-card:nth-child(9) .fc-icon svg{animation:icoBrush 4s ease-in-out infinite}
+@keyframes icoBrush{0%,50%,100%{transform:rotate(0) scale(1);filter:none}65%{transform:rotate(10deg) scale(1.1);filter:hue-rotate(40deg)}82%{transform:rotate(-6deg) scale(1.05);filter:hue-rotate(-30deg)}}
+.feat-card:hover{transform:translateY(-4px)}
+.feat-card:hover .fc-icon{border-color:var(--blue);box-shadow:0 6px 16px -6px rgba(34,51,232,.35)}
+.feat-card:hover .fc-icon svg{animation-duration:1.4s}
+@media (prefers-reduced-motion:reduce){.feat-grid .feat-card .fc-icon svg{animation:none !important}}
 @media (max-width:860px){.feat-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.feat-grid{grid-template-columns:1fr}}
 
@@ -366,8 +411,17 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .edu-point{display:flex;gap:12px;font-size:15.5px;font-weight:600;color:var(--ink-soft)}
 .edu-point::before{content:'✓';flex:0 0 24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
 .edu-card{background:#fff;border-radius:20px;padding:38px 34px;box-shadow:0 20px 50px rgba(240,90,26,.16);border:1px solid #ffd9c4;text-align:center}
-.edu-card .ec-big{width:54px;height:54px;border-radius:16px;background:var(--tint);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-.ec-big svg{width:27px;height:27px}
+.edu-ill{margin:-6px auto 18px;max-width:400px}
+.edu-ill svg{width:100%;height:auto;display:block}
+.edu-arm{transform-origin:312px 136px;animation:eduPoint 2.8s ease-in-out infinite}
+@keyframes eduPoint{0%,55%,100%{transform:rotate(0)}68%{transform:rotate(-9deg)}80%{transform:rotate(3deg)}}
+.edu-bubble{animation:eduBub 2.8s ease-in-out infinite;transform-origin:270px 76px}
+@keyframes eduBub{0%,58%,100%{opacity:1;transform:scale(1)}66%{opacity:1;transform:scale(1.05)}}
+.scr-sum{animation:scrGlow 2.8s ease-in-out infinite}
+@keyframes scrGlow{0%,60%,100%{opacity:1}70%{opacity:.45}78%{opacity:1}}
+.scr-l{transform-origin:left center}
+.edu-card.in .scr-l{animation:lineLoop 5s cubic-bezier(.22,1,.36,1) infinite}
+.edu-card.in .l2{animation-delay:.3s}.edu-card.in .l3{animation-delay:.6s}
 .edu-card h3{font-size:22px;font-weight:900;letter-spacing:-.02em;margin-bottom:10px}
 .edu-card p{font-size:14.5px;color:var(--muted)}
 .edu-card .ec-badge{display:inline-block;margin-top:18px;background:var(--orange);color:#fff;font-size:13px;font-weight:800;border-radius:999px;padding:8px 20px}
@@ -440,24 +494,50 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 @media (max-width:680px){.vs-grid{grid-template-columns:1fr}}
 
 /* ---------- 보안·데이터 안전 ---------- */
-.trust-sec{background:#fff}
+.trust-sec{position:relative;overflow:hidden;color:#EAF6EF;
+  background:linear-gradient(180deg,#07130E 0%,#0A1A12 55%,#07130E 100%)}
+.trust-sec::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(34,197,94,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.06) 1px,transparent 1px);
+  background-size:46px 46px;mask-image:radial-gradient(90% 80% at 50% 30%,#000 30%,transparent 80%)}
+.trust-sec::after{content:'';position:absolute;left:0;right:0;top:0;height:2px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,197,94,.85),transparent);
+  animation:secScan 4.5s ease-in-out infinite}
+@keyframes secScan{0%{transform:translateY(0);opacity:0}8%{opacity:1}50%{transform:translateY(56vh);opacity:.6}92%{opacity:0}100%{transform:translateY(60vh);opacity:0}}
+.trust-sec h2{color:#fff}
+.trust-sec .eyebrow{color:#4ADE80}
+.trust-sec .eyebrow::before{background:#4ADE80}
+.trust-sec .lead{color:#9CC7AC}
 .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
-.trust-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--r);padding:26px 22px;text-align:center}
-.trust-card .tc-ico{width:46px;height:46px;border-radius:14px;background:var(--tint);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.trust-card{position:relative;background:rgba(255,255,255,.045);border:1px solid rgba(74,222,128,.16);border-radius:var(--r);padding:26px 22px;text-align:center;transition:border-color .2s,transform .2s,box-shadow .2s}
+.trust-card:hover{border-color:rgba(74,222,128,.5);transform:translateY(-3px);box-shadow:0 14px 34px -16px rgba(34,197,94,.35)}
+.trust-card .sec-ok{position:absolute;top:13px;right:13px;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:secDot 2.6s ease-out infinite}
+.trust-card:nth-child(2) .sec-ok{animation-delay:.6s}.trust-card:nth-child(3) .sec-ok{animation-delay:1.2s}.trust-card:nth-child(4) .sec-ok{animation-delay:1.8s}
+@keyframes secDot{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.trust-card .tc-ico{width:48px;height:48px;border-radius:14px;background:rgba(34,197,94,.1);border:1px solid rgba(74,222,128,.3);color:#4ADE80;display:flex;align-items:center;justify-content:center;margin:0 auto 15px}
+.trust-card:nth-child(1) .tc-ico svg{animation:secLock 3.4s ease-in-out infinite;transform-origin:50% 65%}
+@keyframes secLock{0%,55%,100%{transform:scale(1)}64%{transform:scale(1.16)}70%{transform:scale(.94)}76%{transform:scale(1)}}
+.trust-card:nth-child(2) .tc-ico svg{animation:secKey 3.6s ease-in-out infinite;transform-origin:33% 60%}
+@keyframes secKey{0%,55%,100%{transform:rotate(0)}68%{transform:rotate(-38deg)}82%{transform:rotate(0)}}
+.trust-card:nth-child(3) .tc-ico svg{animation:secTick 3.2s ease-in-out infinite}
+@keyframes secTick{0%,60%,100%{transform:rotate(0)}68%{transform:rotate(18deg)}76%{transform:rotate(-10deg)}84%{transform:rotate(0)}}
+.trust-card:nth-child(4) .tc-ico svg{animation:secCloud 3.8s ease-in-out infinite}
+@keyframes secCloud{0%,50%,100%{transform:translateY(0);opacity:1}65%{transform:translateY(-3.5px);opacity:.72}80%{transform:translateY(0);opacity:1}}
 .trust-card .tc-ico svg{width:23px;height:23px}
-.trust-card h3{font-size:16px;font-weight:800;margin-bottom:7px;letter-spacing:-.02em}
-.trust-card p{font-size:13.5px;color:var(--muted);line-height:1.65}
+.trust-card h3{font-size:15.5px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em;color:#fff}
+.trust-card p{font-size:13.5px;color:#9CC7AC;line-height:1.75}
 @media (max-width:860px){.trust-grid{grid-template-columns:1fr 1fr}}
 
 /* ---------- 화면 미리보기 갤러리 ---------- */
 .gallery{background:var(--tint)}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
 .shot{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
-.shot .shot-img{aspect-ratio:16/10;background:linear-gradient(135deg,var(--tint2),#fff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--dim);border-bottom:1px solid var(--border);overflow:hidden}
+.shot .shot-img{aspect-ratio:16/10;background:linear-gradient(135deg,var(--tint2),#fff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--dim);border-bottom:1px solid var(--border);overflow:hidden;position:relative}
 .shot .shot-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
 .shot .shot-cap{padding:15px 18px}
 .shot .shot-cap h4{font-size:15px;font-weight:800;margin-bottom:4px}
 .shot .shot-cap p{font-size:13px;color:var(--muted)}
+.shot .shot-img::after{content:'미리보기 재생 중';position:absolute;top:10px;right:10px;font-size:10px;font-weight:900;letter-spacing:.02em;color:#16a34a;background:#fff;border:1px solid #bbf7d0;border-radius:999px;padding:3px 9px;display:flex;align-items:center;gap:4px}
+.shot .shot-img::before{content:'';position:absolute;top:17px;right:96px;width:7px;height:7px;border-radius:50%;background:#22c55e;z-index:1;animation:secDot 2s ease-out infinite}
 /* ── 미니 제품 프레임 (이모지 대체) ── */
 .mini{width:86%;max-width:280px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px 13px 12px;box-shadow:0 10px 26px -14px rgba(13,18,64,.28);text-align:left}
 .mini-bar{display:flex;gap:6px;margin-bottom:10px}
@@ -467,31 +547,32 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .mini-row em{font-style:normal;font-weight:800;font-size:9px;color:var(--blue);background:var(--tint2);border-radius:4px;padding:1.5px 5px}
 .mini-row span{flex:1;height:7px;border-radius:4px;background:var(--tint2)}
 .mini-row b{font-variant-numeric:tabular-nums;color:var(--ink);font-size:10.5px}
-.shot.in .mini-row{opacity:0;animation:miniIn .5s cubic-bezier(.22,1,.36,1) forwards}
-.shot.in .mini-row.r1{animation-delay:.25s}.shot.in .mini-row.r2{animation-delay:.45s}.shot.in .mini-row.r3{animation-delay:.65s}
+.shot.in .mini-row{opacity:0;animation:miniLoop 6s cubic-bezier(.22,1,.36,1) infinite}
+.shot.in .mini-row.r1{animation-delay:.2s}.shot.in .mini-row.r2{animation-delay:.55s}.shot.in .mini-row.r3{animation-delay:.9s}
 @keyframes miniIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes miniLoop{0%{opacity:0;transform:translateY(7px)}7%,88%{opacity:1;transform:none}96%,100%{opacity:0;transform:translateY(7px)}}
 .mini-sum{display:flex;justify-content:space-between;align-items:center;margin-top:9px;background:var(--ink);border-radius:8px;padding:7px 10px}
 .mini-sum span{width:34%;height:6px;border-radius:3px;background:rgba(255,255,255,.28)}
 .mini-sum b{color:#fff;font-size:11px;font-variant-numeric:tabular-nums}
-.shot.in .mini-sum{animation:miniIn .5s .85s cubic-bezier(.22,1,.36,1) both}
+.shot.in .mini-sum{opacity:0;animation:miniLoop 6s 1.25s cubic-bezier(.22,1,.36,1) infinite}
 .mini.doc{position:relative;padding-top:16px}
 .mini-doc-t{text-align:center;font-size:11px;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:11px}
 .mini-line{height:7px;border-radius:4px;background:var(--tint2);margin:8px 0}
 .mini-line.w9{width:92%}.mini-line.w8{width:82%}.mini-line.w7{width:72%}.mini-line.w6{width:58%}
-.shot.in .mini-line{transform-origin:left;animation:lineDraw .6s cubic-bezier(.22,1,.36,1) both}
+.shot.in .mini-line{transform-origin:left;transform:scaleX(0);animation:lineLoop 6s cubic-bezier(.22,1,.36,1) infinite}
 .shot.in .mini-line:nth-of-type(2){animation-delay:.15s}.shot.in .mini-line:nth-of-type(3){animation-delay:.3s}
 .shot.in .mini-line:nth-of-type(4){animation-delay:.45s}.shot.in .mini-line:nth-of-type(5){animation-delay:.6s}
-@keyframes lineDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes lineLoop{0%{transform:scaleX(0)}9%,88%{transform:scaleX(1)}96%,100%{transform:scaleX(0)}}
 .mini-seal{position:absolute;right:14px;top:38px;width:44px;height:44px;border:2px solid rgba(220,38,38,.65);border-radius:50%;color:rgba(220,38,38,.75);font-size:8.5px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25;transform:rotate(-12deg)}
-.shot.in .mini-seal{animation:sealIn .45s .95s cubic-bezier(.34,1.56,.64,1) both}
-@keyframes sealIn{from{opacity:0;transform:rotate(-12deg) scale(1.9)}to{opacity:1;transform:rotate(-12deg) scale(1)}}
+.shot.in .mini-seal{opacity:0;animation:sealLoop 6s 1.15s cubic-bezier(.34,1.56,.64,1) infinite}
+@keyframes sealLoop{0%{opacity:0;transform:rotate(-12deg) scale(1.9)}7%,86%{opacity:1;transform:rotate(-12deg) scale(1)}94%,100%{opacity:0;transform:rotate(-12deg) scale(1.9)}}
 .mini-pay-row{display:flex;align-items:center;gap:5px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:10px}
 .mini-pay-row:last-child{border-bottom:none}
 .mini-pay-row>span{flex:1;font-weight:700;color:var(--ink);font-size:10.5px}
 .chk{font-style:normal;font-size:8.5px;font-weight:800;border-radius:5px;padding:2.5px 6px;background:var(--green-soft,#e8f7ee);color:#16a34a;white-space:nowrap}
 .chk.wait{background:var(--tint2);color:var(--dim)}
-.shot.in .chk{opacity:0;animation:miniIn .4s cubic-bezier(.22,1,.36,1) forwards}
-.shot.in .chk.c1{animation-delay:.3s}.shot.in .chk.c2{animation-delay:.5s}.shot.in .chk.c3{animation-delay:.7s}
+.shot.in .chk{opacity:0;animation:miniLoop 6s cubic-bezier(.22,1,.36,1) infinite}
+.shot.in .chk.c1{animation-delay:.25s}.shot.in .chk.c2{animation-delay:.6s}.shot.in .chk.c3{animation-delay:.95s}
 @media (max-width:760px){.gallery-grid{grid-template-columns:1fr}}
 
 /* ---------- FAQ ---------- */
@@ -757,7 +838,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       <span class="eyebrow">무료 도입 신청</span>
       <h2>먼저 써보고<br>결정하세요</h2>
       <p class="lead">견적 10건을 카드 등록 없이 무료로 쓰실 수 있습니다. 기간이 아니라 건수라서, 바쁜 달에 못 쓰셨다고 사라지지 않습니다.</p>
-      <div class="su-points">
+      <div class="su-points reveal">
         <div class="su-point"><span>카드 등록·약정·자동결제 <b>없음</b></span></div>
         <div class="su-point"><span>10건을 다 써도 <b>견적·고객 링크는 그대로</b></span></div>
         <div class="su-point"><span><b>견적 항목 73개</b> 기본 제공 — 단가만 입력</span></div>
@@ -881,10 +962,10 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
     <h2>고객 정보, 함부로 새지 않습니다</h2>
     <p class="lead">견적서엔 고객 이름·연락처·현장 주소가 담깁니다. 그래서 처음부터 안전하게 설계했습니다.</p>
     <div class="trust-grid">
-      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9"/><path d="M12 14.6v2.3"/></svg></div><h3>업체별 분리 저장</h3><p>우리 업체 데이터는 다른 업체와 완전히 분리된 공간에 저장됩니다. 남의 견적이 섞일 일이 없습니다.</p></div>
-      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="14.5" r="4.5"/><path d="m11.3 11.2 8-8M16 6.5l2.6 2.6M13.2 9.3l2.2 2.2"/></svg></div><h3>비밀번호 접근 통제</h3><p>설정한 비밀번호로만 들어옵니다. 고객에게 보내는 링크에는 관리자 정보가 담기지 않습니다.</p></div>
-      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 1.8"/><path d="M9.5 2.8h5"/></svg></div><h3>고객 링크 자동 만료</h3><p>고객에게 보낸 견적 링크는 정해둔 기간이 지나면 자동으로 닫힙니다. 유출되더라도 열람 기간이 제한됩니다.</p></div>
-      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5a4.5 4.5 0 0 1-.4-9A5.5 5.5 0 0 1 17.3 11a3.8 3.8 0 0 1-.8 7.5z"/></svg></div><h3>자동 저장·실시간 동기화</h3><p>작성과 동시에 암호화된 통신(HTTPS)으로 클라우드에 저장됩니다. 폰이 꺼지거나 바뀌어도 견적은 그대로 남습니다.</p></div>
+      <div class="trust-card reveal"><span class="sec-ok" aria-hidden="true"></span><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9"/><path d="M12 14.6v2.3"/></svg></div><h3>업체별 분리 저장</h3><p>우리 업체 데이터는 다른 업체와 완전히 분리된 공간에 저장됩니다. 남의 견적이 섞일 일이 없습니다.</p></div>
+      <div class="trust-card reveal"><span class="sec-ok" aria-hidden="true"></span><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="14.5" r="4.5"/><path d="m11.3 11.2 8-8M16 6.5l2.6 2.6M13.2 9.3l2.2 2.2"/></svg></div><h3>비밀번호 접근 통제</h3><p>설정한 비밀번호로만 들어옵니다. 고객에게 보내는 링크에는 관리자 정보가 담기지 않습니다.</p></div>
+      <div class="trust-card reveal"><span class="sec-ok" aria-hidden="true"></span><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 1.8"/><path d="M9.5 2.8h5"/></svg></div><h3>고객 링크 자동 만료</h3><p>고객에게 보낸 견적 링크는 정해둔 기간이 지나면 자동으로 닫힙니다. 유출되더라도 열람 기간이 제한됩니다.</p></div>
+      <div class="trust-card reveal"><span class="sec-ok" aria-hidden="true"></span><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5a4.5 4.5 0 0 1-.4-9A5.5 5.5 0 0 1 17.3 11a3.8 3.8 0 0 1-.8 7.5z"/></svg></div><h3>자동 저장·실시간 동기화</h3><p>작성과 동시에 암호화된 통신(HTTPS)으로 클라우드에 저장됩니다. 폰이 꺼지거나 바뀌어도 견적은 그대로 남습니다.</p></div>
     </div>
   </div>
 </section>
@@ -932,8 +1013,37 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
         <div class="edu-point">교육 후에도 카톡 1:1로 계속 지원</div>
       </div>
     </div>
-    <div class="edu-card">
-      <div class="ec-big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7.5" r="3"/><path d="M3.8 20a5.2 5.2 0 0 1 10.4 0"/><path d="M16 5h5M16 8.5h5M16 12h3"/></svg></div>
+    <div class="edu-card reveal">
+      <div class="edu-ill" aria-hidden="true"><svg viewBox="0 0 440 240" fill="none">
+  <rect x="14" y="12" width="412" height="216" rx="20" fill="#FFF7F1"/>
+  <rect x="40" y="196" width="360" height="13" rx="6.5" fill="#E9DACB"/>
+  <!-- 노트북 -->
+  <rect x="182" y="88" width="110" height="76" rx="7" fill="#fff" stroke="#C9D0F0" stroke-width="2"/>
+  <rect x="192" y="100" width="52" height="7" rx="3.5" fill="#E4E8FB" class="scr-l l1"/>
+  <rect x="192" y="113" width="72" height="7" rx="3.5" fill="#E4E8FB" class="scr-l l2"/>
+  <rect x="192" y="126" width="60" height="7" rx="3.5" fill="#E4E8FB" class="scr-l l3"/>
+  <rect x="192" y="141" width="90" height="13" rx="6" fill="#2233E8" class="scr-sum"/>
+  <path d="M170 164h134l10 13H160z" fill="#B9C0DC"/>
+  <!-- 사장님 (왼쪽, 뒷모습) -->
+  <circle cx="122" cy="106" r="18" fill="#2C2620"/>
+  <path d="M104 100c0-11 8-19 18-19s18 8 18 19" fill="#3A322A"/>
+  <rect x="88" y="122" width="68" height="82" rx="28" fill="#1E2A66"/>
+  <rect x="118" y="118" width="9" height="12" rx="4" fill="#E8B48D"/>
+  <!-- 강사 (오른쪽, 뒷모습·화면 가리킴) -->
+  <circle cx="332" cy="96" r="17" fill="#40342B"/>
+  <rect x="302" y="112" width="62" height="92" rx="26" fill="#F05A1A"/>
+  <rect x="327" y="108" width="9" height="11" rx="4" fill="#E8B48D"/>
+  <g class="edu-arm">
+    <path d="M312 136 Q288 126 272 116" stroke="#F05A1A" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="270" cy="114" r="6" fill="#E8B48D"/>
+  </g>
+  <!-- 말풍선 -->
+  <g class="edu-bubble">
+    <rect x="236" y="44" width="150" height="32" rx="16" fill="#fff" stroke="#E3DCD2" stroke-width="1.5"/>
+    <path d="M268 76l-7 11 16-11z" fill="#fff" stroke="#E3DCD2" stroke-width="1.5"/>
+    <text x="311" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="#0d1240" font-family="inherit">여기만 누르시면 돼요</text>
+  </g>
+</svg></div>
       <h3>컴퓨터가 어려워도 괜찮습니다</h3>
       <p>고견적의 원칙은 "엑셀보다 쉽게"입니다.<br>현장 대표님 눈높이에 맞춰 만들었고,<br>강사가 손에 익을 때까지 함께합니다.</p>
       <span class="ec-badge">방문 교육 · 유료 도입 시 제공</span>
@@ -1239,8 +1349,9 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
   function step(){
     q = q>=3 ? 1 : q+1;
     plus.classList.add('press');
-    setTimeout(()=>plus.classList.remove('press'),240);
-    qty.textContent=q;
+    setTimeout(()=>plus.classList.remove('press'),380);
+    qty.classList.remove('pop'); void qty.offsetWidth;
+    qty.textContent=q; qty.classList.add('pop');
     setTimeout(()=>{                     // 0.45초 뒤 고객 화면 반영 — "실시간"이 눈에 보인다
       [qty2,amt,tot].forEach(e=>e.classList.add('tick'));
       qty2.textContent=q;
@@ -1252,7 +1363,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
   }
   const io=new IntersectionObserver(es=>{
     es.forEach(e=>{
-      if(e.isIntersecting && !timer){ step(); timer=setInterval(step,3400); }
+      if(e.isIntersecting && !timer){ step(); timer=setInterval(step,2600); }
       else if(!e.isIntersecting && timer){ clearInterval(timer); timer=null; }
     });
   },{threshold:.4});
