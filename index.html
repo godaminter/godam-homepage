@@ -85,8 +85,8 @@ a{color:inherit}
 section{padding:96px 0}
 h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-height:1.24}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:-.01em;margin-bottom:14px}
-.eyebrow::before{content:'';width:22px;height:3px;background:var(--orange);border-radius:2px}
-.lead{font-size:17px;color:var(--muted);margin-top:14px;max-width:620px}
+.eyebrow::before{content:'';width:7px;height:7px;border-radius:2px;background:var(--blue);transform:rotate(45deg)}
+.lead{font-size:17px;color:var(--muted);margin-top:14px;max-width:620px;font-weight:500;line-height:1.8}
 
 /* ---------- 헤더 ---------- */
 .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
@@ -97,14 +97,14 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .nav{display:flex;gap:24px;font-size:14.5px;font-weight:600;color:var(--ink-soft)}
 .nav a{text-decoration:none;transition:color .15s}
 .nav a:hover{color:var(--blue)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-weight:800;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:transform .12s,box-shadow .12s,filter .12s;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-weight:800;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .25s,filter .2s;letter-spacing:-.01em}
+.btn:active{transform:scale(.965)}
 .btn:hover{transform:translateY(-2px)}
 .btn-kakao{background:var(--kakao);color:var(--kakao-ink);padding:11px 20px;font-size:14.5px;box-shadow:0 4px 14px rgba(254,229,0,.45)}
 .btn-kakao:hover{filter:brightness(.97);box-shadow:0 8px 20px rgba(254,229,0,.55)}
-.btn-blue{background:linear-gradient(180deg,var(--blue-mid),var(--blue));color:#fff;padding:15px 28px;font-size:16px;
-  box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 8px 22px -6px rgba(34,51,232,.55)}
-.btn-blue:hover{box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 14px 30px -8px rgba(34,51,232,.65)}
-.btn-blue:active{transform:translateY(0) scale(.985)}
+.btn-blue{background:var(--blue);color:#fff;padding:15px 30px;font-size:16px;
+  box-shadow:0 8px 22px -8px rgba(34,51,232,.55)}
+.btn-blue:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 14px 30px -10px rgba(34,51,232,.6)}
 .btn-head{background:var(--blue);color:#fff;padding:11px 20px;font-size:14.5px;box-shadow:0 4px 14px rgba(34,51,232,.32)}
 .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--border);padding:14px 26px;font-size:15px}
 .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
@@ -182,9 +182,7 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 
 /* ---------- 숫자 띠 ---------- */
 .numbers{background:linear-gradient(180deg,#10173F,var(--ink));padding:0;position:relative;overflow:hidden}
-.numbers::before{content:'';position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
-  background-size:52px 52px;mask-image:linear-gradient(180deg,transparent,#000 40%,transparent)}
+
 .numbers .container{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:30px;padding-bottom:30px}
 .num-item{text-align:center;padding:6px 8px;position:relative}
 .num-item+.num-item::before{content:'';position:absolute;left:-5px;top:14%;bottom:14%;width:1px;background:rgba(255,255,255,.1)}
@@ -198,10 +196,11 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 /* ---------- 고민 스트립 ---------- */
 .pain{background:var(--ink);color:#fff;padding:76px 0}
 .pain h2{color:#fff;text-align:center}
-.pain h2 .x{color:#ff8a5c}
+.pain h2 .x{color:#fff;box-shadow:inset 0 -0.32em rgba(240,90,26,.45)}
 .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
 .pain-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:26px 24px}
-.pain-card .pc-emoji{font-size:26px;margin-bottom:12px}
+.pain-card .pc-ico{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#AeB6FF;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.pain-card .pc-ico svg{width:21px;height:21px}
 .pain-card h3{font-size:17px;font-weight:800;margin-bottom:8px}
 .pain-card p{font-size:14px;color:#b9beea;line-height:1.7}
 @media (max-width:760px){.pain-grid{grid-template-columns:1fr}}
@@ -222,6 +221,15 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .screen-visual{display:flex;flex-direction:column;gap:16px;align-items:center}
 .sv-card{background:#fff;color:var(--ink);border-radius:var(--r);padding:20px 22px;width:100%;max-width:380px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
 .sv-card .svc-tag{font-size:10.5px;font-weight:900;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.svc-qty{display:inline-flex;align-items:center;gap:10px}
+.q-btn{width:22px;height:22px;border-radius:7px;background:var(--tint2);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;transition:transform .15s,background .15s}
+.q-btn.press{transform:scale(.82);background:var(--blue);color:#fff}
+.q-num{min-width:14px;text-align:center;font-variant-numeric:tabular-nums}
+.sy-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5EE39A;margin-right:7px;box-shadow:0 0 0 0 rgba(94,227,154,.55);animation:syPing 2.2s ease-out infinite}
+@keyframes syPing{0%{box-shadow:0 0 0 0 rgba(94,227,154,.55)}70%{box-shadow:0 0 0 9px rgba(94,227,154,0)}100%{box-shadow:0 0 0 0 rgba(94,227,154,0)}}
+#syCust.flash{animation:syFlash .7s ease}
+@keyframes syFlash{0%{box-shadow:0 0 0 0 rgba(94,227,154,.0)}25%{box-shadow:0 0 0 4px rgba(94,227,154,.5)}100%{box-shadow:0 0 0 0 rgba(94,227,154,0)}}
+#syAmt.tick,#syTotal.tick,#syQty2.tick{color:var(--blue);transition:color .3s}
 .sv-card.owner .svc-tag{color:var(--orange)}
 .sv-card .svc-line{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px dashed var(--border)}
 .sv-card .svc-line:last-child{border-bottom:none}
@@ -252,7 +260,8 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .signup .eyebrow::before{background:#fff}
 .signup .lead{color:#c3c9f5}
 .su-points{margin-top:26px;display:flex;flex-direction:column;gap:13px}
-.su-point{display:flex;gap:12px;font-size:15px;font-weight:600;color:#e6e9ff;line-height:1.6}
+.su-point{display:flex;gap:12px;font-size:15px;font-weight:600;color:#e6e9ff;line-height:1.65}
+.su-point>span{flex:1}
 .su-point::before{content:'✓';flex:0 0 23px;height:23px;border-radius:50%;background:var(--green);color:#062b13;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;margin-top:3px}
 .su-why{margin-top:26px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px 20px}
 .su-why h4{font-size:14px;font-weight:900;margin-bottom:7px}
@@ -279,7 +288,7 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .sf-agree{display:flex;gap:10px;align-items:flex-start;margin:6px 0 18px;font-size:13px;color:var(--ink-soft);line-height:1.6}
 .sf-agree input{width:19px;height:19px;margin-top:1px;flex:0 0 auto;accent-color:var(--blue);cursor:pointer}
 .sf-agree a{color:var(--blue);font-weight:700}
-.sf-submit{width:100%;background:linear-gradient(180deg,var(--blue-mid),var(--blue));color:#fff;border:none;border-radius:13px;padding:17px;font-size:17px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:-.02em;box-shadow:0 8px 22px rgba(34,51,232,.35);transition:filter .15s,transform .12s}
+.sf-submit{width:100%;background:var(--blue);color:#fff;border:none;border-radius:13px;padding:17px;font-size:17px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:-.02em;box-shadow:0 8px 22px rgba(34,51,232,.35);transition:filter .15s,transform .12s}
 .sf-submit:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.05)}
 .sf-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .sf-foot{margin-top:13px;font-size:12.5px;color:var(--muted);text-align:center;line-height:1.6}
@@ -308,8 +317,8 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
 .feat-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--r);padding:28px 26px;transition:transform .18s,box-shadow .18s,border-color .18s}
 .feat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:#c9d0f2}
-.feat-card .fc-icon{width:46px;height:46px;border-radius:13px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:16px;box-shadow:0 4px 12px rgba(34,51,232,.3)}
-.feat-card:nth-child(3n) .fc-icon{background:var(--orange);box-shadow:0 4px 12px rgba(240,90,26,.3)}
+.feat-card .fc-icon{width:46px;height:46px;border-radius:14px;background:#fff;border:1px solid var(--border);color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 1px 2px rgba(13,18,64,.05)}
+.feat-card .fc-icon svg{width:23px;height:23px}
 .feat-card h3{font-size:17.5px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
 .feat-card p{font-size:14px;color:var(--muted);line-height:1.7}
 @media (max-width:860px){.feat-grid{grid-template-columns:1fr 1fr}}
@@ -324,7 +333,8 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .edu-point{display:flex;gap:12px;font-size:15.5px;font-weight:600;color:var(--ink-soft)}
 .edu-point::before{content:'✓';flex:0 0 24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
 .edu-card{background:#fff;border-radius:20px;padding:38px 34px;box-shadow:0 20px 50px rgba(240,90,26,.16);border:1px solid #ffd9c4;text-align:center}
-.edu-card .ec-big{font-size:54px;line-height:1;margin-bottom:18px}
+.edu-card .ec-big{width:54px;height:54px;border-radius:16px;background:var(--tint);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.ec-big svg{width:27px;height:27px}
 .edu-card h3{font-size:22px;font-weight:900;letter-spacing:-.02em;margin-bottom:10px}
 .edu-card p{font-size:14.5px;color:var(--muted)}
 .edu-card .ec-badge{display:inline-block;margin-top:18px;background:var(--orange);color:#fff;font-size:13px;font-weight:800;border-radius:999px;padding:8px 20px}
@@ -400,7 +410,8 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .trust-sec{background:#fff}
 .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
 .trust-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--r);padding:26px 22px;text-align:center}
-.trust-card .tc-ico{width:48px;height:48px;margin:0 auto 14px;border-radius:13px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px}
+.trust-card .tc-ico{width:46px;height:46px;border-radius:14px;background:var(--tint);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.trust-card .tc-ico svg{width:23px;height:23px}
 .trust-card h3{font-size:16px;font-weight:800;margin-bottom:7px;letter-spacing:-.02em}
 .trust-card p{font-size:13.5px;color:var(--muted);line-height:1.65}
 @media (max-width:860px){.trust-grid{grid-template-columns:1fr 1fr}}
@@ -411,11 +422,43 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .shot{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
 .shot .shot-img{aspect-ratio:16/10;background:linear-gradient(135deg,var(--tint2),#fff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--dim);border-bottom:1px solid var(--border);overflow:hidden}
 .shot .shot-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-.shot .shot-img .si-emoji{font-size:34px}
-.shot .shot-img .si-note{font-size:12px;font-weight:700;color:var(--dim)}
 .shot .shot-cap{padding:15px 18px}
 .shot .shot-cap h4{font-size:15px;font-weight:800;margin-bottom:4px}
 .shot .shot-cap p{font-size:13px;color:var(--muted)}
+/* ── 미니 제품 프레임 (이모지 대체) ── */
+.mini{width:86%;max-width:280px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px 13px 12px;box-shadow:0 10px 26px -14px rgba(13,18,64,.28);text-align:left}
+.mini-bar{display:flex;gap:6px;margin-bottom:10px}
+.mini-bar i{display:block;height:8px;border-radius:4px;background:var(--tint2);width:26%}
+.mini-bar i+i{background:var(--blue);opacity:.25}
+.mini-row{display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px dashed var(--border);font-size:10.5px}
+.mini-row em{font-style:normal;font-weight:800;font-size:9px;color:var(--blue);background:var(--tint2);border-radius:4px;padding:1.5px 5px}
+.mini-row span{flex:1;height:7px;border-radius:4px;background:var(--tint2)}
+.mini-row b{font-variant-numeric:tabular-nums;color:var(--ink);font-size:10.5px}
+.shot.in .mini-row{opacity:0;animation:miniIn .5s cubic-bezier(.22,1,.36,1) forwards}
+.shot.in .mini-row.r1{animation-delay:.25s}.shot.in .mini-row.r2{animation-delay:.45s}.shot.in .mini-row.r3{animation-delay:.65s}
+@keyframes miniIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.mini-sum{display:flex;justify-content:space-between;align-items:center;margin-top:9px;background:var(--ink);border-radius:8px;padding:7px 10px}
+.mini-sum span{width:34%;height:6px;border-radius:3px;background:rgba(255,255,255,.28)}
+.mini-sum b{color:#fff;font-size:11px;font-variant-numeric:tabular-nums}
+.shot.in .mini-sum{animation:miniIn .5s .85s cubic-bezier(.22,1,.36,1) both}
+.mini.doc{position:relative;padding-top:16px}
+.mini-doc-t{text-align:center;font-size:11px;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:11px}
+.mini-line{height:7px;border-radius:4px;background:var(--tint2);margin:8px 0}
+.mini-line.w9{width:92%}.mini-line.w8{width:82%}.mini-line.w7{width:72%}.mini-line.w6{width:58%}
+.shot.in .mini-line{transform-origin:left;animation:lineDraw .6s cubic-bezier(.22,1,.36,1) both}
+.shot.in .mini-line:nth-of-type(2){animation-delay:.15s}.shot.in .mini-line:nth-of-type(3){animation-delay:.3s}
+.shot.in .mini-line:nth-of-type(4){animation-delay:.45s}.shot.in .mini-line:nth-of-type(5){animation-delay:.6s}
+@keyframes lineDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.mini-seal{position:absolute;right:14px;top:38px;width:44px;height:44px;border:2px solid rgba(220,38,38,.65);border-radius:50%;color:rgba(220,38,38,.75);font-size:8.5px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25;transform:rotate(-12deg)}
+.shot.in .mini-seal{animation:sealIn .45s .95s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes sealIn{from{opacity:0;transform:rotate(-12deg) scale(1.9)}to{opacity:1;transform:rotate(-12deg) scale(1)}}
+.mini-pay-row{display:flex;align-items:center;gap:5px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:10px}
+.mini-pay-row:last-child{border-bottom:none}
+.mini-pay-row>span{flex:1;font-weight:700;color:var(--ink);font-size:10.5px}
+.chk{font-style:normal;font-size:8.5px;font-weight:800;border-radius:5px;padding:2.5px 6px;background:var(--green-soft,#e8f7ee);color:#16a34a;white-space:nowrap}
+.chk.wait{background:var(--tint2);color:var(--dim)}
+.shot.in .chk{opacity:0;animation:miniIn .4s cubic-bezier(.22,1,.36,1) forwards}
+.shot.in .chk.c1{animation-delay:.3s}.shot.in .chk.c2{animation-delay:.5s}.shot.in .chk.c3{animation-delay:.7s}
 @media (max-width:760px){.gallery-grid{grid-template-columns:1fr}}
 
 /* ---------- FAQ ---------- */
@@ -470,7 +513,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
   body{padding-bottom:74px}
 }
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);transition-delay:var(--rd,0s)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -582,17 +625,17 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
     <h2 class="reveal">아직도 견적서를 <span class="x">밤에 다시</span> 쓰시나요?</h2>
     <div class="pain-grid">
       <div class="pain-card reveal">
-        <div class="pc-emoji">😩</div>
+        <div class="pc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h11l3 3v14H5z"/><path d="M16 3.5v3h3"/><path d="M8.5 10h7M8.5 13.5h7M8.5 17h4"/></svg></div>
         <h3>현장에선 메모, 사무실에선 엑셀</h3>
         <p>현장에서 수첩에 적고, 밤에 컴퓨터 앞에서 다시 옮겨 적는 이중 작업. 견적 하나에 하루가 갑니다.</p>
       </div>
       <div class="pain-card reveal">
-        <div class="pc-emoji">📉</div>
+        <div class="pc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5 10 13l4-4 6.5 6.5"/><path d="M20.5 10v5.5H15"/></svg></div>
         <h3>견적이 늦으면 계약을 놓칩니다</h3>
         <p>고객은 견적서를 먼저 보낸 업체와 계약합니다. 하루 늦은 견적서는 경쟁사의 영업 자료가 될 뿐입니다.</p>
       </div>
       <div class="pain-card reveal">
-        <div class="pc-emoji">🤔</div>
+        <div class="pc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10.6H9.4L4 20z"/><path d="M8.5 9.5h7M8.5 12.3h4.5"/></svg></div>
         <h3>"이 금액이 왜 나왔죠?"</h3>
         <p>합계만 적힌 견적서는 의심을 부릅니다. 항목과 단가가 투명하게 보여야 고객이 믿고 도장을 찍습니다.</p>
       </div>
@@ -622,17 +665,17 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
         </div>
       </div>
     </div>
-    <div class="screen-visual">
+    <div class="screen-visual" id="syncDemo">
       <div class="sv-card owner">
         <div class="svc-tag">사장님 화면 — 수정 중</div>
-        <div class="svc-line"><span>포세린 타일 시공</span><b>1,200,000원</b></div>
-        <div class="svc-line"><span>수량</span><b>− 2 ＋</b></div>
+        <div class="svc-line"><span>포세린 타일 시공</span><b>1,200,000원 <small>×1</small></b></div>
+        <div class="svc-line"><span>수량</span><b class="svc-qty"><span class="q-btn">−</span><span id="syQty" class="q-num">1</span><span class="q-btn" id="syPlus">＋</span></b></div>
       </div>
-      <div class="sv-arrow">⬇ 실시간 동기화</div>
-      <div class="sv-card">
+      <div class="sv-arrow" id="syArrow"><span class="sy-pulse"></span>실시간 동기화</div>
+      <div class="sv-card" id="syCust">
         <div class="svc-tag">고객 화면 — 즉시 반영</div>
-        <div class="svc-line"><span>포세린 타일 시공 × 2</span><b>2,400,000원</b></div>
-        <div class="svc-line"><span>총 견적 금액</span><b>8,140,000원</b></div>
+        <div class="svc-line"><span>포세린 타일 시공 × <span id="syQty2">1</span></span><b id="syAmt">1,200,000원</b></div>
+        <div class="svc-line"><span>총 견적 금액</span><b id="syTotal">6,940,000원</b></div>
       </div>
     </div>
   </div>
@@ -677,10 +720,10 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       <h2>먼저 써보고<br>결정하세요</h2>
       <p class="lead">견적 10건을 카드 등록 없이 무료로 쓰실 수 있습니다. 기간이 아니라 건수라서, 바쁜 달에 못 쓰셨다고 사라지지 않습니다.</p>
       <div class="su-points">
-        <div class="su-point">카드 등록·약정·자동결제 전환이 <b>없습니다</b></div>
-        <div class="su-point">무료 10건을 다 써도 <b>만들어 둔 견적과 고객 링크는 그대로</b> 남습니다</div>
-        <div class="su-point">철거부터 마감까지 <b>견적 항목 73개</b>를 채워서 드립니다 — 단가만 입력하면 끝 (업종별 전용 세트는 준비 중)</div>
-        <div class="su-point">계속 쓰고 싶으실 때만 결제하시면 됩니다</div>
+        <div class="su-point"><span>카드 등록·약정·자동결제 전환이 <b>없습니다</b></span></div>
+        <div class="su-point"><span>무료 10건을 다 써도 <b>만들어 둔 견적과 고객 링크는 그대로</b> 남습니다</span></div>
+        <div class="su-point"><span>철거부터 마감까지 <b>견적 항목 73개</b>를 채워서 드립니다 — 단가만 입력하면 끝 (업종별 전용 세트는 준비 중)</span></div>
+        <div class="su-point"><span>계속 쓰고 싶으실 때만 결제하시면 됩니다</span></div>
       </div>
       <div class="su-why">
         <h4>왜 사업자등록번호를 받나요?</h4>
@@ -780,15 +823,15 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
     <h2>필요한 기능만, 전부 넣었습니다</h2>
     <p class="lead">복잡한 ERP가 아닙니다. 견적 — 상담 — 계약 — 수금. 시공 현장의 흐름 그대로 만들었습니다.</p>
     <div class="feat-grid">
-      <div class="feat-card reveal"><div class="fc-icon">📋</div><h3>단가표 미리 등록</h3><p>철거·설비·타일·도배 등 우리 업체 단가를 한 번만 등록하세요. 현장에서는 골라서 수량만 누르면 견적이 완성됩니다. 단가를 바꾸면 <b>모든 업종</b>에 맞출 수 있습니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">⚡</div><h3>빠른시작 + 즐겨찾기</h3><p>"욕실 1칸", "주방 교체"처럼 자주 하는 공사를 버튼 하나에 묶어 누적 추가. 자주 쓰는 품목은 ★ 즐겨찾기 바에 모아두고 한 번에 올립니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">🧮</div><h3>부가세·지불일정 자동</h3><p>VAT 포함/별도 토글 한 번이면 끝. 계약금·중도금(최대 8회)·잔금 비율도 자동으로 나눠 보여줍니다. 계산기를 다시 두드릴 일이 없습니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">📚</div><h3>견적 히스토리 + 검색</h3><p>보낸 견적은 자동 보관. 현장명·고객명·연락처로 <b>검색</b>해 지난 견적을 그대로 불러와 재사용합니다. 계약금·중도금·잔금 입금 여부도 체크해 <b>못 받은 돈</b>이 한눈에 보입니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">💰</div><h3>실지출 · 순이익 관리</h3><p>견적마다 공종별 <b>실제 지출</b>을 입력하면 견적가와 비교해 <b>남는 돈(순이익)</b>이 자동 계산됩니다. 현장이 끝나면 얼마 남았는지 바로 압니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">📄</div><h3>계약서 자동 생성 · 편집</h3><p>견적 금액과 지불 일정이 자동으로 들어간 시공 계약서를 그 자리에서 출력. 조항 본문은 우리 업체에 맞게 직접 고쳐 쓸 수 있습니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">🖼</div><h3>이미지·PDF로 즉시 전달</h3><p>설치 없이 주소만 열면 어디서든 같은 화면. 견적서를 <b>이미지로 복사</b>해 카톡에 붙여넣거나, <b>PDF로 저장</b>하고, 고객 전용 링크로 보낼 수 있습니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">🏷</div><h3>우리 회사 브랜드로</h3><p>프로 플랜은 견적 화면 상단에 프로그램 이름 대신 <b>우리 상호</b>가 표시됩니다. 고객이 보는 화면 전체가 우리 회사 것이 됩니다.</p></div>
-      <div class="feat-card reveal"><div class="fc-icon">🎨</div><h3>고객 화면 꾸미기</h3><p>고객이 보는 견적서에 <b>시공 절차 안내</b>, <b>A/S 보증 문구</b>, 블로그·유튜브 <b>시공사례 링크</b>까지 넣을 수 있습니다. 단순한 견적서가 회사 소개서가 됩니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01" stroke-width="2.6"/></svg></div><h3>단가표 미리 등록</h3><p>철거·설비·타일·도배 등 우리 업체 단가를 한 번만 등록하세요. 현장에서는 골라서 수량만 누르면 견적이 완성됩니다. 단가를 바꾸면 <b>모든 업종</b>에 맞출 수 있습니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><h3>빠른시작 + 즐겨찾기</h3><p>"욕실 1칸", "주방 교체"처럼 자주 하는 공사를 버튼 하나에 묶어 누적 추가. 자주 쓰는 품목은 ★ 즐겨찾기 바에 모아두고 한 번에 올립니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01" stroke-width="2.6"/></svg></div><h3>부가세·지불일정 자동</h3><p>VAT 포함/별도 토글 한 번이면 끝. 계약금·중도금(최대 8회)·잔금 비율도 자동으로 나눠 보여줍니다. 계산기를 다시 두드릴 일이 없습니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3.3 3.5v4h4"/><path d="M12 7.8V12l2.8 1.7"/></svg></div><h3>견적 히스토리 + 검색</h3><p>보낸 견적은 자동 보관. 현장명·고객명·연락처로 <b>검색</b>해 지난 견적을 그대로 불러와 재사용합니다. 계약금·중도금·잔금 입금 여부도 체크해 <b>못 받은 돈</b>이 한눈에 보입니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M9 9.2l1.6 5.6L12 10l1.4 4.8L15 9.2M8.6 13h6.8"/></svg></div><h3>실지출 · 순이익 관리</h3><p>견적마다 공종별 <b>실제 지출</b>을 입력하면 견적가와 비교해 <b>남는 돈(순이익)</b>이 자동 계산됩니다. 현장이 끝나면 얼마 남았는지 바로 압니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.8h8l4 4v14.4H6z"/><path d="M14 2.8v4h4"/><path d="M9 12.5h6M9 16h4"/></svg></div><h3>계약서 자동 생성 · 편집</h3><p>견적 금액과 지불 일정이 자동으로 들어간 시공 계약서를 그 자리에서 출력. 조항 본문은 우리 업체에 맞게 직접 고쳐 쓸 수 있습니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.5 8.4 6 8.4-6"/></svg></div><h3>이미지·PDF로 즉시 전달</h3><p>설치 없이 주소만 열면 어디서든 같은 화면. 견적서를 <b>이미지로 복사</b>해 카톡에 붙여넣거나, <b>PDF로 저장</b>하고, 고객 전용 링크로 보낼 수 있습니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5h8.1L20.5 13.4a2 2 0 0 1 0 2.8l-4.3 4.3a2 2 0 0 1-2.8 0z"/><path d="M8 9h.01" stroke-width="3"/></svg></div><h3>우리 회사 브랜드로</h3><p>프로 플랜은 견적 화면 상단에 프로그램 이름 대신 <b>우리 상호</b>가 표시됩니다. 고객이 보는 화면 전체가 우리 회사 것이 됩니다.</p></div>
+      <div class="feat-card reveal"><div class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 3.2c3.9.6 7.3 4 7.3 8 0 2.6-2 3.6-3.6 3.3-1.5-.3-3-.3-3.3 1.3-.3 1.7 1 2.4.4 3.6-.5 1-1.7 1.6-3 1.6a9.2 9.2 0 1 1 2.2-17.8z"/><path d="M8 8.5h.01M13 6.5h.01M16.5 10h.01M7.5 13.5h.01" stroke-width="3"/></svg></div><h3>고객 화면 꾸미기</h3><p>고객이 보는 견적서에 <b>시공 절차 안내</b>, <b>A/S 보증 문구</b>, 블로그·유튜브 <b>시공사례 링크</b>까지 넣을 수 있습니다. 단순한 견적서가 회사 소개서가 됩니다.</p></div>
     </div>
   </div>
 </section>
@@ -800,10 +843,10 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
     <h2>고객 정보, 함부로 새지 않습니다</h2>
     <p class="lead">견적서엔 고객 이름·연락처·현장 주소가 담깁니다. 그래서 처음부터 안전하게 설계했습니다.</p>
     <div class="trust-grid">
-      <div class="trust-card reveal"><div class="tc-ico">🔒</div><h3>업체별 분리 저장</h3><p>우리 업체 데이터는 다른 업체와 완전히 분리된 공간에 저장됩니다. 남의 견적이 섞일 일이 없습니다.</p></div>
-      <div class="trust-card reveal"><div class="tc-ico">🔑</div><h3>비밀번호 접근 통제</h3><p>설정한 비밀번호로만 들어옵니다. 고객에게 보내는 링크에는 관리자 정보가 담기지 않습니다.</p></div>
-      <div class="trust-card reveal"><div class="tc-ico">⏳</div><h3>고객 링크 자동 만료</h3><p>고객에게 보낸 견적 링크는 정해둔 기간이 지나면 자동으로 닫힙니다. 유출되더라도 열람 기간이 제한됩니다.</p></div>
-      <div class="trust-card reveal"><div class="tc-ico">☁️</div><h3>자동 저장·실시간 동기화</h3><p>작성과 동시에 암호화된 통신(HTTPS)으로 클라우드에 저장됩니다. 폰이 꺼지거나 바뀌어도 견적은 그대로 남습니다.</p></div>
+      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9"/><path d="M12 14.6v2.3"/></svg></div><h3>업체별 분리 저장</h3><p>우리 업체 데이터는 다른 업체와 완전히 분리된 공간에 저장됩니다. 남의 견적이 섞일 일이 없습니다.</p></div>
+      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="14.5" r="4.5"/><path d="m11.3 11.2 8-8M16 6.5l2.6 2.6M13.2 9.3l2.2 2.2"/></svg></div><h3>비밀번호 접근 통제</h3><p>설정한 비밀번호로만 들어옵니다. 고객에게 보내는 링크에는 관리자 정보가 담기지 않습니다.</p></div>
+      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9.5V13l2.5 1.8"/><path d="M9.5 2.8h5"/></svg></div><h3>고객 링크 자동 만료</h3><p>고객에게 보낸 견적 링크는 정해둔 기간이 지나면 자동으로 닫힙니다. 유출되더라도 열람 기간이 제한됩니다.</p></div>
+      <div class="trust-card reveal"><div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5a4.5 4.5 0 0 1-.4-9A5.5 5.5 0 0 1 17.3 11a3.8 3.8 0 0 1-.8 7.5z"/></svg></div><h3>자동 저장·실시간 동기화</h3><p>작성과 동시에 암호화된 통신(HTTPS)으로 클라우드에 저장됩니다. 폰이 꺼지거나 바뀌어도 견적은 그대로 남습니다.</p></div>
     </div>
   </div>
 </section>
@@ -815,9 +858,24 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
     <h2>엑셀과는 다릅니다, 직접 보세요</h2>
     <p class="lead">복잡한 셀과 수식 대신, 누르면 채워지는 화면. 고객에게 그대로 보여줘도 깔끔합니다.</p>
     <div class="gallery-grid">
-      <div class="shot reveal"><div class="shot-img"><span class="si-emoji">🧾</span><span class="si-note">견적 작성 화면</span></div><div class="shot-cap"><h4>견적 작성</h4><p>항목을 검색해 담고, 수량만 누르면 합계가 자동으로 잡힙니다.</p></div></div>
-      <div class="shot reveal"><div class="shot-img"><span class="si-emoji">📄</span><span class="si-note">계약서 화면</span></div><div class="shot-cap"><h4>계약서 자동 생성</h4><p>견적 금액과 지불 일정이 들어간 계약서를 그 자리에서 출력합니다.</p></div></div>
-      <div class="shot reveal"><div class="shot-img"><span class="si-emoji">💳</span><span class="si-note">히스토리 화면</span></div><div class="shot-cap"><h4>히스토리 · 수금 체크</h4><p>현장별 계약금·중도금·잔금 입금 여부가 한눈에 보입니다.</p></div></div>
+      <div class="shot reveal"><div class="shot-img"><div class="mini est">
+        <div class="mini-bar"><i></i><i style="width:38%"></i></div>
+        <div class="mini-row r1"><em>철거</em><span></span><b>450,000</b></div>
+        <div class="mini-row r2"><em>타일</em><span></span><b>2,400,000</b></div>
+        <div class="mini-row r3"><em>설비</em><span></span><b>780,000</b></div>
+        <div class="mini-sum"><span></span><b>3,630,000원</b></div>
+      </div></div><div class="shot-cap"><h4>견적 작성</h4><p>항목을 검색해 담고, 수량만 누르면 합계가 자동으로 잡힙니다.</p></div></div>
+      <div class="shot reveal"><div class="shot-img"><div class="mini doc">
+        <div class="mini-doc-t">공 사 도 급 계 약 서</div>
+        <div class="mini-line w9"></div><div class="mini-line w7"></div><div class="mini-line w8"></div>
+        <div class="mini-seal">고담<br>인테리어</div>
+        <div class="mini-line w6"></div><div class="mini-line w8"></div>
+      </div></div><div class="shot-cap"><h4>계약서 자동 생성</h4><p>견적 금액과 지불 일정이 들어간 계약서를 그 자리에서 출력합니다.</p></div></div>
+      <div class="shot reveal"><div class="shot-img"><div class="mini pay">
+        <div class="mini-pay-row"><span>권선구 1201호</span><i class="chk c1">계약금 ✓</i><i class="chk c2">중도금 ✓</i><i class="chk c3 wait">잔금</i></div>
+        <div class="mini-pay-row"><span>영통 상가</span><i class="chk c1">계약금 ✓</i><i class="chk c2 wait">중도금</i><i class="chk c3 wait">잔금</i></div>
+        <div class="mini-pay-row"><span>매탄동 욕실</span><i class="chk c1">계약금 ✓</i><i class="chk c2">중도금 ✓</i><i class="chk c3">잔금 ✓</i></div>
+      </div></div><div class="shot-cap"><h4>히스토리 · 수금 체크</h4><p>현장별 계약금·중도금·잔금 입금 여부가 한눈에 보입니다.</p></div></div>
     </div>
   </div>
 </section>
@@ -827,7 +885,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
   <div class="container">
     <div>
       <span class="eyebrow">도입하면 끝까지 책임집니다</span>
-      <h2>전문 강사가 <b style="color:var(--orange)">직접 방문</b>해서 알려드립니다</h2>
+      <h2>전문 강사가 <b style="box-shadow:inset 0 -0.32em rgba(34,51,232,.16)">직접 방문</b>해서 알려드립니다</h2>
       <p class="lead">프로그램만 던져주고 끝나는 서비스가 아닙니다. 유료로 도입하시면 강사가 사업장으로 찾아가 우리 업체에 맞게 세팅하고, 첫 견적서를 함께 만들어 드립니다.</p>
       <div class="edu-points">
         <div class="edu-point">무료 체험 기간에는 카카오톡 1:1 지원 + 앱 안 화면별 가이드</div>
@@ -837,7 +895,7 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
       </div>
     </div>
     <div class="edu-card">
-      <div class="ec-big">🤝</div>
+      <div class="ec-big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7.5" r="3"/><path d="M3.8 20a5.2 5.2 0 0 1 10.4 0"/><path d="M16 5h5M16 8.5h5M16 12h3"/></svg></div>
       <h3>컴퓨터가 어려워도 괜찮습니다</h3>
       <p>고견적의 원칙은 "엑셀보다 쉽게"입니다.<br>현장 대표님 눈높이에 맞춰 만들었고,<br>강사가 손에 익을 때까지 함께합니다.</p>
       <span class="ec-badge">방문 교육 · 유료 도입 시 제공</span>
@@ -1129,14 +1187,81 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
   if(reduced){ ITEMS.forEach(()=>addRow()); } else { setTimeout(addRow, 700); }
 })();
 
+/* ---------- 실시간 동기화 데모 ---------- */
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.getElementById('syncDemo');
+  if(!root || reduced) return;
+  const qty=document.getElementById('syQty'), qty2=document.getElementById('syQty2');
+  const amt=document.getElementById('syAmt'), tot=document.getElementById('syTotal');
+  const plus=document.getElementById('syPlus'), cust=document.getElementById('syCust');
+  const UNIT=1200000, BASE=5740000;
+  const f=n=>n.toLocaleString('ko-KR');
+  let q=1, timer=null;
+  function step(){
+    q = q>=3 ? 1 : q+1;
+    plus.classList.add('press');
+    setTimeout(()=>plus.classList.remove('press'),240);
+    qty.textContent=q;
+    setTimeout(()=>{                     // 0.45초 뒤 고객 화면 반영 — "실시간"이 눈에 보인다
+      [qty2,amt,tot].forEach(e=>e.classList.add('tick'));
+      qty2.textContent=q;
+      amt.textContent=f(UNIT*q)+'원';
+      tot.textContent=f(BASE+UNIT*q)+'원';
+      cust.classList.add('flash');
+      setTimeout(()=>{[qty2,amt,tot].forEach(e=>e.classList.remove('tick'));cust.classList.remove('flash');},750);
+    },450);
+  }
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting && !timer){ step(); timer=setInterval(step,3400); }
+      else if(!e.isIntersecting && timer){ clearInterval(timer); timer=null; }
+    });
+  },{threshold:.4});
+  io.observe(root);
+})();
+
 /* ---------- 스크롤 리빌 ---------- */
 (function(){
   const els = document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  // 같은 부모 안 형제들은 80ms 간격으로 순차 등장 — 그리드가 살아난다
+  const groups = new Map();
+  els.forEach(e=>{
+    const g = groups.get(e.parentElement) || [];
+    g.push(e); groups.set(e.parentElement, g);
+  });
+  groups.forEach(g=>g.forEach((e,i)=>{ if(g.length>1) e.style.setProperty('--rd',(i*0.08)+'s'); }));
   const io = new IntersectionObserver(es=>{
     es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   },{threshold:.12});
   els.forEach(e=>io.observe(e));
+})();
+
+/* ---------- 숫자띠 카운트업 ---------- */
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nums = document.querySelectorAll('.num-item .n');
+  if(!nums.length || reduced || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es=>{
+    es.forEach(en=>{
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      const el = en.target;
+      const m = (el.textContent||'').match(/\d+/);
+      if(!m) return;
+      const target = parseInt(m[0],10);
+      const small = el.querySelector('small');
+      const unit = small ? small.outerHTML : '';
+      const t0 = performance.now(), dur = 900;
+      (function tick(now){
+        const p = Math.min(1,(now-t0)/dur), e2 = 1-Math.pow(1-p,3);
+        el.innerHTML = Math.round(target*e2) + unit;
+        if(p<1) requestAnimationFrame(tick);
+      })(t0);
+    });
+  },{threshold:.6});
+  nums.forEach(n=>io.observe(n));
 })();
 
 /* ---------- 입력 자동 서식 ---------- */
