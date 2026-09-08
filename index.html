@@ -68,10 +68,9 @@
 /* 애니메이션을 쓸 수 있는 환경에서만 '숨겼다가 보여주기'. 아니면 처음부터 다 보인다. */
 (function(){
   try{
-    var ua = navigator.userAgent || '';
-    var inApp = /Instagram|FBAN|FBAV|KAKAOTALK|NAVER\(inapp|Line\//i.test(ua);
+    // 인앱 브라우저(인스타·카톡)도 애니메이션 켠다 — 사장님 실기기 확인 완료. 안 도는 환경은 아래 감시자가 잡는다.
     var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if ('IntersectionObserver' in window && !reduced && !inApp) document.documentElement.classList.add('anim');
+    if ('IntersectionObserver' in window && !reduced) document.documentElement.classList.add('anim');
   }catch(e){}
 })();
 </script>
