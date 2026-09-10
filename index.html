@@ -1493,37 +1493,68 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
   io.observe(root);
 })();
 
-/* ---------- 스크롤 리빌 ---------- */
+/* ---------- 스크롤 리빌 (2026-09-11 견고화) ----------
+   사고: 데스크톱 크롬에서 시작 3단계 카드·항목 칩·체크 문장 등 .reveal 이 영영 안 나타나 화면이 통째로 빈 채 보였다.
+   교훈: 내용을 JS 로 "숨겼다가 보여주기"는 보여주는 쪽이 한 번만 실패해도 빈 페이지다. 애니메이션은 덤이지 내용이 아니다.
+   지금: ① IntersectionObserver (기존)
+         ② 스크롤·리사이즈·탭 복귀·뒤로가기 복원·앵커 이동 때마다 위치를 직접 재서, 0.2초 넘게 화면 안에 있는데 안 나타난 건 강제 표시
+         ③ 5초 뒤엔 이미 지나친(화면 위) 것 전부 표시  ④ 12초 뒤엔 남은 것 전부 표시 + 숨김 자체 해제
+         ②③④가 실제로 뭔가를 살렸으면 fm/rvfix 로 집계 → 대시보드에서 "얼마나 자주 이러나"를 본다. */
 (function(){
-  const els = document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const els = Array.from(document.querySelectorAll('.reveal'));
+  if(!els.length) return;
+  const html = document.documentElement;
+  if(!html.classList.contains('anim')){ els.forEach(e=>e.classList.add('in')); return; }
   // 같은 부모 안 형제들은 80ms 간격으로 순차 등장 — 그리드가 살아난다
   const groups = new Map();
-  els.forEach(e=>{
-    const g = groups.get(e.parentElement) || [];
-    g.push(e); groups.set(e.parentElement, g);
-  });
+  els.forEach(e=>{ const g = groups.get(e.parentElement) || []; g.push(e); groups.set(e.parentElement, g); });
   groups.forEach(g=>g.forEach((e,i)=>{ if(g.length>1) e.style.setProperty('--rd',(i*0.08)+'s'); }));
-  const io = new IntersectionObserver(es=>{
-    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.12});
-  els.forEach(e=>io.observe(e));
+  let pending = els.slice(), fixed = 0, reported = false;
+  const seen = new WeakMap();
+  function show(e){ e.classList.add('in'); pending = pending.filter(x=>x!==e); }
+  function report(){ if(fixed && !reported && window.__gdOnce){ reported = true; window.__gdOnce('fm/rvfix'); } }
+  function sweep(reason){
+    if(!pending.length) return;
+    const h = window.innerHeight || 800, now = Date.now();
+    pending.slice().forEach(e=>{
+      const r = e.getBoundingClientRect();
+      if(reason === 'all'){ show(e); fixed++; return; }
+      if(reason === 'late' && r.bottom < 0){ show(e); fixed++; return; }
+      const inView = r.bottom > 0 && r.top < h * 0.95;
+      if(!inView){ seen.delete(e); return; }
+      const t = seen.get(e);
+      if(!t) seen.set(e, now);                       // 방금 들어옴 — IO 에게 한 프레임 준다
+      else if(now - t > 200){ show(e); fixed++; }    // 0.2초 넘게 보이는데 안 나타남 = IO 가 놓친 것
+    });
+    if(reason === 'all') html.classList.remove('anim');   // 남은 숨김(칩·체크 등)도 전부 해제
+    report();
+  }
+  if('IntersectionObserver' in window){
+    try{
+      const io = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting){ show(en.target); io.unobserve(en.target); } }); },{threshold:.12});
+      els.forEach(e=>io.observe(e));
+    }catch(e){}
+  }
+  let raf = 0;
+  const tick = ()=>{ if(raf) return; raf = requestAnimationFrame(()=>{ raf = 0; sweep('scroll'); }); };
+  window.addEventListener('scroll', tick, {passive:true});
+  window.addEventListener('resize', tick, {passive:true});
+  window.addEventListener('hashchange', ()=>setTimeout(()=>sweep('scroll'), 60));
+  window.addEventListener('pageshow', ()=>setTimeout(()=>sweep('scroll'), 60));
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) setTimeout(()=>sweep('scroll'), 60); });
+  window.addEventListener('load', ()=>setTimeout(()=>sweep('scroll'), 60));
+  // 화면 안에 있는데 안 나타난 것을 주기적으로도 본다 — 스크롤 이벤트가 안 오는 상황(앵커 점프·복원) 대비
+  let n = 0; const iv = setInterval(()=>{ sweep('scroll'); if(++n > 40 || !pending.length) clearInterval(iv); }, 250);
+  setTimeout(()=>sweep('late'), 5000);
+  setTimeout(()=>sweep('all'), 12000);
 })();
 
-/* ---------- 리빌 감시자 ---------- */
+/* ---------- 리빌 감시자 (b): 브라우저가 CSS 애니메이션을 통째로 껐으면 숨김 자체를 푼다 ---------- */
 (function(){
   var html = document.documentElement;
   if(!html.classList.contains('anim')) return;
-  function showAll(){ html.classList.remove('anim'); document.querySelectorAll('.reveal').forEach(function(e){ e.classList.add('in'); }); }
-  // (a) 2.5초 뒤 화면 안에 있는데도 안 나타난 .reveal 이 있으면 리빌 자체가 안 도는 것
   setTimeout(function(){
-    var h = window.innerHeight, stuck = false;
-    document.querySelectorAll('.reveal:not(.in)').forEach(function(e){ var r = e.getBoundingClientRect(); if(r.top < h*0.9 && r.bottom > 0) stuck = true; });
-    if(stuck) showAll();
-  }, 2500);
-  // (b) 브라우저가 CSS 애니메이션을 통째로 껐는지 — 항상 도는 live-dot 이 안 돌면 꺼진 것
-  setTimeout(function(){
-    try{ if(document.getAnimations && document.getAnimations().length === 0) showAll(); }catch(e){}
+    try{ if(document.getAnimations && document.getAnimations().length === 0){ html.classList.remove('anim'); document.querySelectorAll('.reveal').forEach(function(e){ e.classList.add('in'); }); } }catch(e){}
   }, 1500);
 })();
 
@@ -1632,6 +1663,7 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
   }
   function hit(path, n){ queue[path] = (queue[path]||0) + (n||1); if (!timer) timer = setTimeout(flush, 400); }
   function once(path){ if (sent[path]) return; sent[path] = 1; hit(path); }
+  window.__gdOnce = once;   // 리빌 폴백이 fm/rvfix 를 세는 데 쓴다
 
   /* ① 방문 */
   hit('pv'); if (isUv) hit('uv'); if (isNew) hit('nw'); else if (isUv) hit('rt');
