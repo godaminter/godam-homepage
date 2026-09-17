@@ -95,6 +95,10 @@ a{color:inherit}
 section{padding:96px 0}
 h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-height:1.24}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:-.01em;margin-bottom:14px}
+/* 만든 사람의 이력 — 규모 자랑(업체 수·누적 금액)은 우리가 지는 게임이라, 우리만 가진 것으로 건다 */
+.eyebrow-cred{background:rgba(34,51,232,.08);border:1px solid rgba(34,51,232,.18);border-radius:999px;padding:8px 16px;font-size:14px;line-height:1.4}
+.eyebrow-cred b{font-weight:900;font-size:15.5px}
+@media (max-width:520px){.eyebrow-cred{font-size:13px;padding:7px 14px}.eyebrow-cred b{font-size:14.5px}}
 .eyebrow::before{content:'';width:7px;height:7px;border-radius:2px;background:var(--blue);transform:rotate(45deg)}
 .lead{font-size:17px;color:var(--muted);margin-top:14px;max-width:620px;font-weight:500;line-height:1.8}
 
@@ -154,8 +158,13 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 .hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
 .hero h1{font-size:clamp(38px,6vw,64px);font-weight:900;letter-spacing:-.05em;line-height:1.12}
 .hero h1 .hl{color:var(--blue);white-space:nowrap;box-shadow:inset 0 -0.26em rgba(34,51,232,.14)}
+/* 형광펜 블록 — 첫 3초에 한 덩어리로 읽히게. 배경을 꽉 채우는 편이 밑줄보다 멀리서도 잡힌다 */
+.hero h1 .mark{background:var(--blue);color:#fff;padding:.02em .16em;border-radius:6px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .hero h1 .dot{color:var(--orange)}
-.hero-sub{font-size:18px;color:var(--muted);margin:20px 0 28px;max-width:490px}
+.hero-lead{font-size:clamp(19px,2.4vw,24px);font-weight:800;color:var(--ink);margin:18px 0 0;letter-spacing:-.03em}
+.hero-lead b{color:var(--blue)}
+.hero-sub{font-size:17px;color:var(--muted);margin:10px 0 28px;max-width:490px}
 .hero-sub b{color:var(--ink);font-weight:700}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .hero-micro{margin-top:14px;font-size:13.5px;color:var(--muted);font-weight:600}
@@ -199,15 +208,20 @@ h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;letter-spacing:-.045em;line-
 /* ---------- 숫자 띠 ---------- */
 .numbers{background:linear-gradient(180deg,#10173F,var(--ink));padding:0;position:relative;overflow:hidden}
 
-.numbers .container{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:30px;padding-bottom:30px}
+.numbers .container{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding-top:30px;padding-bottom:30px}
 .num-item{text-align:center;padding:6px 8px;position:relative}
+.num-item:first-child .n{color:#FFB38C}   /* 만든 사람 이력 — 이 띠에서 가장 먼저 읽히게 */
 .num-item+.num-item::before{content:'';position:absolute;left:-5px;top:14%;bottom:14%;width:1px;background:rgba(255,255,255,.1)}
 .num-item .n{font-size:clamp(24px,3.2vw,34px);font-weight:900;letter-spacing:-.04em;color:#fff;font-variant-numeric:tabular-nums;line-height:1.15}
 .num-item .n small{font-size:14px;font-weight:800;margin-left:2px;color:#9aa3d8}
 .num-item:nth-child(2) .n{color:#FF9A66}
 .num-item .l{font-size:12.5px;color:#9aa3d8;font-weight:600;margin-top:4px;line-height:1.5}
+@media (max-width:1000px){.numbers .container{grid-template-columns:repeat(3,1fr);gap:14px}
+  .num-item:nth-child(4)::before{display:none}}
 @media (max-width:680px){.numbers .container{grid-template-columns:1fr 1fr;gap:16px}
-  .num-item:nth-child(3)::before{display:none}}
+  /* 모바일에선 첫 칸(이력)이 한 줄을 다 쓴다 — 제일 먼저 읽혀야 하는 숫자 */
+  .num-item:first-child{grid-column:1/-1}
+  .num-item:nth-child(2)::before,.num-item:nth-child(4)::before{display:none}}
 
 /* ---------- 고민 스트립 ---------- */
 .pain{position:relative;color:#fff;padding:96px 0 88px;overflow:hidden;
@@ -271,6 +285,12 @@ html.anim .missed-chips.in .m-chip{animation:chipSlam .5s cubic-bezier(.3,1.9,.4
 .screen-sec .eyebrow::before{background:#fff}
 .screen-sec h2{color:#fff}
 .screen-sec .lead{color:#ccd1ff}
+/* 짧은 사실 목록 — 설명이 아니라 확인용. 데모를 본 뒤 눈으로 훑는 4줄 */
+.sc-facts{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.sc-facts li{font-size:15.5px;line-height:1.55;color:#ccd2ff;display:flex;gap:10px;align-items:flex-start}
+.sc-facts li::before{content:'✓';color:#4ADE80;font-weight:900;flex:0 0 auto;margin-top:1px}
+.sc-facts b{color:#fff;font-weight:800}
+@media (max-width:860px){.sc-facts li{font-size:14.5px}}
 .steps{margin-top:30px;display:flex;flex-direction:column;gap:16px}
 .step{display:flex;gap:17px;align-items:flex-start;position:relative;padding-bottom:26px}
 .step:last-child{padding-bottom:0}
@@ -301,7 +321,10 @@ html.anim .missed-chips.in .m-chip{animation:chipSlam .5s cubic-bezier(.3,1.9,.4
 .sv-card .svc-line b{font-variant-numeric:tabular-nums}
 .sv-arrow{font-size:15px;font-weight:900;color:#fff;letter-spacing:-.01em;display:flex;align-items:center;background:rgba(0,0,25,.32);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:9px 18px}
 @keyframes pulse{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-@media (max-width:860px){.screen-sec .container{grid-template-columns:1fr}}
+/* 모바일: 데모가 먼저 보여야 한다. 글을 읽고 나서 증거를 보는 게 아니라, 증거를 보고 글로 확인. */
+@media (max-width:860px){.screen-sec .container{grid-template-columns:1fr;gap:30px}
+  .screen-sec .container>div:first-child{order:2}
+  .screen-visual{order:1}}
 
 /* ---------- 시작 3단계 ---------- */
 .how{background:#fff}
@@ -763,17 +786,18 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
 <section class="hero" id="top">
   <div class="container">
     <div>
-      <span class="eyebrow">사업자번호만 있으면 됩니다</span>
-      <h1>고객이 믿는 견적서,<br>고객님 앞에서 <span class="hl">3분</span>이면 끝<span class="dot">.</span></h1>
-      <p class="hero-sub">단가는 미리 등록해 두고 현장에선 <b>누르기만</b> 하세요. 부가세·계약서·수금·순이익까지, 고객이 보는 앞에서 견적이 완성됩니다.</p>
+      <span class="eyebrow eyebrow-cred">실견적서 <b>3,000장</b>을 쓴 사람이 만든 고견적</span>
+      <h1><span class="mark">신뢰를 주는 견적서</span>는<br>정해져 있습니다<span class="dot">.</span></h1>
+      <p class="hero-lead">고객님 앞에서 <b>바로 작성되는</b> 견적서입니다.</p>
+      <p class="hero-sub">단가는 미리 등록해 두고 현장에선 <b>누르기만</b> 하세요. 부가세·계약서·수금·순이익까지, 고객이 보는 앞에서 완성됩니다.</p>
       <div class="hero-cta">
         <a class="btn btn-blue btn-lg" href="#start">무료로 시작하기</a>
         <a class="btn btn-ghost btn-lg" href="#customer-screen">고객 스크린 보기 ↓</a>
       </div>
       <p class="hero-micro">카드 등록 없음 · 견적 <b>10건 무료</b> · 접수하면 <b>1시간 안에</b> 계정을 보내드립니다</p>
       <div class="hero-trust">
-        <span class="trust-item">설치 없는 웹 프로그램</span>
-        <span class="trust-item">태블릿·휴대폰 최적화</span>
+        <span class="trust-item">현장에서 직접 쓰며 만든 프로그램</span>
+        <span class="trust-item">설치 없는 웹 · 태블릿·휴대폰</span>
         <span class="trust-item">견적 항목 73개 기본 제공</span>
       </div>
     </div>
@@ -802,6 +826,10 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
 <!-- ============ 숫자 띠 ============ -->
 <section class="numbers" aria-label="고견적 요약">
   <div class="container">
+    <div class="num-item">
+      <div class="n">3,000<small>장+</small></div>
+      <div class="l">만든 사람이 직접 쓴 견적서<br>8년 현장에서</div>
+    </div>
     <div class="num-item">
       <div class="n">0<small>원</small></div>
       <div class="l">시작 비용<br>카드 등록 없음</div>
@@ -885,21 +913,15 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
     <div>
       <span class="eyebrow">고견적에만 있는 기능</span>
       <h2>고객 스크린 —<br>상담이 곧 계약이 됩니다</h2>
-      <p class="lead">사장님이 견적을 수정하는 순간, 고객이 보고 있는 화면에 <b>실시간</b>으로 반영됩니다. 항목·단가·합계가 투명하게 보이니 "왜 이 금액이죠?"라는 질문이 사라집니다.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div><h4>고객 앞에 태블릿을 놓으세요</h4><p>고객 화면에는 메모·원가 같은 관리자 전용 정보는 보이지 않습니다. 보여줄 것만 보입니다.</p></div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div><h4>옵션을 바꾸며 그 자리에서 조율</h4><p>"타일을 이걸로 바꾸면?" — 항목을 바꾸는 즉시 고객 화면의 합계가 움직입니다. 협상이 빨라집니다.</p></div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div><h4>링크 하나로 고객 폰에 전달</h4><p>상담이 끝나면 견적서 링크를 보내세요. 고객은 앱 설치 없이 휴대폰에서 바로 열어봅니다. 고객이 언제 열어봤는지도 기록됩니다.</p></div>
-        </div>
-      </div>
+      <p class="lead">사장님이 고치면, 고객 화면이 <b>같이 바뀝니다.</b></p>
+      <!-- 설명 문단을 걷어냈다. 오른쪽(모바일은 위) 데모가 이미 같은 말을 하고 있어서,
+           글은 데모가 못 하는 것만 짧게 맡는다. 긴 문단은 스크롤 이탈의 원인. -->
+      <ul class="sc-facts">
+        <li>고객 화면엔 <b>메모·원가가 안 보입니다</b></li>
+        <li>옵션을 바꾸면 <b>합계가 그 자리에서 움직입니다</b></li>
+        <li>링크 하나면 <b>고객 폰에서 바로 열립니다</b> · 앱 설치 없음</li>
+        <li>고객이 <b>언제 열어봤는지</b> 기록됩니다</li>
+      </ul>
     </div>
     <div class="screen-visual" id="syncDemo">
       <div class="sv-card owner">
@@ -1032,7 +1054,7 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
         <button class="sf-submit" id="sfSubmit" type="button">무료로 시작하기 →</button>
         <div class="sf-err" id="errAll" style="text-align:center;margin-top:10px;"></div>
         <p class="sf-foot">카드 등록 없음 · 약정 없음 · 자동결제로 넘어가지 않습니다</p>
-        <a class="sf-alt" href="https://open.kakao.com/o/sgCwWOMi" target="_blank" rel="noopener">먼저 물어보고 싶으신가요? 💬 카카오톡으로 문의하기</a>
+        <a class="sf-alt" href="https://pf.kakao.com/_SgYrX/chat" target="_blank" rel="noopener">먼저 물어보고 싶으신가요? 💬 카카오톡으로 문의하기</a>
       </div>
 
       <div class="sf-done" id="sfDone">
@@ -1046,7 +1068,7 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
           ③ 첫 로그인에서 비밀번호를 바꾸시고 단가표만 우리 업체 기준으로 고치면 됩니다.
         </div>
         <p style="font-size:13.5px;">급하시면 카카오톡으로 알려주세요. 바로 처리해 드립니다.</p>
-        <a class="btn btn-kakao" href="https://open.kakao.com/o/sgCwWOMi" target="_blank" rel="noopener" style="margin-top:12px;">💬 카카오톡으로 재촉하기</a>
+        <a class="btn btn-kakao" href="https://pf.kakao.com/_SgYrX/chat" target="_blank" rel="noopener" style="margin-top:12px;">💬 카카오톡으로 재촉하기</a>
       </div>
     </div>
   </div>
@@ -1341,7 +1363,7 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
     <h2>오늘 받은 현장,<br>오늘 견적서 보내세요</h2>
     <p>사업자번호만 남기시면 계정을 만들어 보내드립니다. 카드 등록 없이 견적 10건을 먼저 써보세요.</p>
     <a class="btn btn-blue" href="#start">무료로 시작하기</a>
-    <p class="sub-cta">먼저 물어보고 싶으시면 <a href="https://open.kakao.com/o/sgCwWOMi" target="_blank" rel="noopener">💬 카카오톡 1:1 문의</a> · 상담은 무료입니다.</p>
+    <p class="sub-cta">먼저 물어보고 싶으시면 <a href="https://pf.kakao.com/_SgYrX/chat" target="_blank" rel="noopener">💬 카카오톡 1:1 문의</a> · 상담은 무료입니다.</p>
   </div>
 </section>
 
@@ -1359,7 +1381,7 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
         주소: 경기도 화성시 동탄구 동탄대로 635, 7층 701-453호(영천동, SH TIME SQUARE Ⅰ)<br>
         개인정보보호책임자: 고영일<br>
         전화: <a href="tel:01048383437">010-4838-3437</a> · 이메일: <a href="mailto:godaminter@gmail.com">godaminter@gmail.com</a><br>
-        문의: <a href="https://open.kakao.com/o/sgCwWOMi" target="_blank" rel="noopener">카카오톡 1:1 오픈채팅</a>
+        문의: <a href="https://pf.kakao.com/_SgYrX/chat" target="_blank" rel="noopener">카카오톡 채널 1:1 문의</a>
       </p>
     </div>
     <div class="f-links">
@@ -1378,7 +1400,7 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
     <div class="f-links">
       <span class="f-head">채널</span>
       <a href="https://www.youtube.com/@타일킹고대표" target="_blank" rel="noopener">유튜브 — 타일킹고대표</a>
-      <a href="https://open.kakao.com/o/sgCwWOMi" target="_blank" rel="noopener">카카오톡 문의</a>
+      <a href="https://pf.kakao.com/_SgYrX/chat" target="_blank" rel="noopener">카카오톡 문의</a>
     </div>
   </div>
   <div class="container f-bottom">
@@ -1388,14 +1410,14 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
 
 <!-- 플로팅 (데스크탑) -->
 <div class="fab-wrap">
-  <a class="fab fab-kakao" href="https://open.kakao.com/o/sgCwWOMi" target="_blank" rel="noopener">💬 카톡 문의</a>
+  <a class="fab fab-kakao" href="https://pf.kakao.com/_SgYrX/chat" target="_blank" rel="noopener">💬 카톡 문의</a>
   <a class="fab fab-start" href="#start">무료로 시작하기</a>
 </div>
 
 <!-- 모바일 하단 고정 -->
 <div class="mobile-cta">
   <a class="mc-start" href="#start">무료로 시작하기</a>
-  <a class="mc-kakao" href="https://open.kakao.com/o/sgCwWOMi" target="_blank" rel="noopener">💬 카톡</a>
+  <a class="mc-kakao" href="https://pf.kakao.com/_SgYrX/chat" target="_blank" rel="noopener">💬 카톡</a>
 </div>
 
 <script>
@@ -1484,13 +1506,27 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
       setTimeout(()=>{[qty2,amt,tot].forEach(e=>e.classList.remove('tick'));cust.classList.remove('flash');},750);
     },450);
   }
-  const io=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting && !timer){ step(); timer=setInterval(step,2600); }
-      else if(!e.isIntersecting && timer){ clearInterval(timer); timer=null; }
-    });
-  },{threshold:.4});
-  io.observe(root);
+  function start(){ if(timer) return; step(); timer=setInterval(step,2600); }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+  let ioOk=false;
+  if('IntersectionObserver' in window){
+    try{
+      const io=new IntersectionObserver(es=>{
+        ioOk=true;
+        es.forEach(e=>{ if(e.isIntersecting) start(); else stop(); });
+      },{threshold:.4});
+      io.observe(root);
+    }catch(e){}
+  }
+  // IO 가 안 돌면 데모가 정지 화면이 된다(어제 빈 화면 사고와 같은 뿌리) → 화면 안에 들어오면 직접 켠다
+  function watch(){
+    const r=root.getBoundingClientRect(), h=window.innerHeight||800;
+    if(r.bottom>0 && r.top<h*0.9) start(); else if(!ioOk) stop();
+  }
+  window.addEventListener('scroll',watch,{passive:true});
+  window.addEventListener('resize',watch,{passive:true});
+  setTimeout(watch,600);
+  setTimeout(()=>{ if(!timer) start(); },6000);   // 6초까지 한 번도 안 돌았으면 무조건 켠다
 })();
 
 /* ---------- 스크롤 리빌 (2026-09-11 견고화) ----------
@@ -1568,15 +1604,17 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
       if(!en.isIntersecting) return;
       io.unobserve(en.target);
       const el = en.target;
-      const m = (el.textContent||'').match(/\d+/);
+      const m = (el.textContent||'').replace(/,/g,'').match(/\d+/);
       if(!m) return;
       const target = parseInt(m[0],10);
+      const comma = (el.textContent||'').indexOf(',') >= 0;
       const small = el.querySelector('small');
       const unit = small ? small.outerHTML : '';
       const t0 = performance.now(), dur = 900;
       (function tick(now){
         const p = Math.min(1,(now-t0)/dur), e2 = 1-Math.pow(1-p,3);
-        el.innerHTML = Math.round(target*e2) + unit;
+        const v = Math.round(target*e2);
+        el.innerHTML = (comma ? v.toLocaleString('ko-KR') : String(v)) + unit;
         if(p<1) requestAnimationFrame(tick);
       })(t0);
     });
@@ -1706,7 +1744,7 @@ html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cu
     var a = ev.target && ev.target.closest && ev.target.closest('a[href]'); if (!a) return;
     var href = a.getAttribute('href') || '', w = where(a), k = '';
     if (href === '#start') k = 'start_' + w;
-    else if (/open\.kakao\.com/.test(href)) k = 'kakao_' + w;
+    else if (/(open|pf)\.kakao\.com/.test(href)) k = 'kakao_' + w;   // 2026-09-17 오픈채팅 → 카카오톡 채널. 옛 패턴만 두면 카톡 클릭 집계가 0 으로 끊긴다
     else if (/app\.godampro\.kr\/pay/.test(href)) k = /프로/.test(a.textContent) ? 'pay_pro' : 'pay_basic';
     else if (/youtube\.com|youtu\.be/.test(href)) k = 'yt_' + w;
     else if (/^tel:/.test(href)) k = 'tel';
