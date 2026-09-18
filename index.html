@@ -287,8 +287,10 @@ html.anim .missed-chips.in .m-chip{animation:chipSlam .5s cubic-bezier(.3,1.9,.4
 .screen-sec .lead{color:#ccd1ff}
 /* 짧은 사실 목록 — 설명이 아니라 확인용. 데모를 본 뒤 눈으로 훑는 4줄 */
 .sc-facts{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
-.sc-facts li{font-size:15.5px;line-height:1.55;color:#ccd2ff;display:flex;gap:10px;align-items:flex-start}
-.sc-facts li::before{content:'✓';color:#4ADE80;font-weight:900;flex:0 0 auto;margin-top:1px}
+/* li 를 flex 로 두면 "텍스트 / <b> / 텍스트" 가 각각 flex 아이템이 되어 좁은 화면에서 3열로 갈라진다(2026-09-18 모바일 깨짐).
+   체크표시는 absolute 로 빼고 본문은 일반 인라인 흐름으로 둔다. */
+.sc-facts li{font-size:15.5px;line-height:1.55;color:#ccd2ff;position:relative;padding-left:24px}
+.sc-facts li::before{content:'✓';color:#4ADE80;font-weight:900;position:absolute;left:0;top:1px}
 .sc-facts b{color:#fff;font-weight:800}
 @media (max-width:860px){.sc-facts li{font-size:14.5px}}
 .steps{margin-top:30px;display:flex;flex-direction:column;gap:16px}
@@ -466,7 +468,12 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .feat-card:hover .fc-icon svg{animation-duration:1.4s}
 @media (prefers-reduced-motion:reduce){.feat-grid .feat-card .fc-icon svg{animation:none !important}}
 @media (max-width:860px){.feat-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.feat-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.feat-grid{grid-template-columns:1fr}
+  /* 보안 카드 4장은 2열이면 폭 160px 남짓 — 한 줄에 7~8자라 문장이 세로로 늘어진다. 기능 카드처럼 1열. */
+  .trust-grid{grid-template-columns:1fr}
+  .trust-grid .trust-card{text-align:left;padding:18px 16px;display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:start}
+  .trust-grid .trust-card .tc-ico{margin:0;grid-row:1/3;width:42px;height:42px}
+  .trust-grid .trust-card h3{grid-column:2;margin-bottom:4px}.trust-grid .trust-card p{grid-column:2}}
 
 /* ---------- 교육 섹션 ---------- */
 .edu{background:var(--orange-light)}
@@ -515,8 +522,8 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .price-card .vat-line b{color:var(--ink);font-weight:800}
 .price-card .desc{font-size:13.5px;color:var(--muted);margin-bottom:22px;min-height:40px}
 .price-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px;flex:1}
-.price-card li{font-size:14px;display:flex;gap:8px;color:var(--ink-soft);line-height:1.55}
-.price-card li::before{content:'✓';color:var(--green);font-weight:900;flex:0 0 auto}
+.price-card li{font-size:14px;position:relative;padding-left:20px;color:var(--ink-soft);line-height:1.55}   /* flex 금지 — <b> 섞이면 열로 갈라짐 */
+.price-card li::before{content:'✓';color:var(--green);font-weight:900;position:absolute;left:0;top:0}
 .price-card li.hl{font-weight:800;color:var(--ink)}
 .price-card li.hl::before{content:'★';color:var(--orange)}
 .price-card li.off{color:var(--dim)}
@@ -550,11 +557,11 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .vs-card.old h3{color:var(--ink-soft)}
 .vs-card.new h3{color:#fff}
 .vs-card ul{list-style:none;display:flex;flex-direction:column;gap:13px}
-.vs-card li{font-size:14.5px;display:flex;gap:10px;line-height:1.5}
+.vs-card li{font-size:14.5px;position:relative;padding-left:22px;line-height:1.5}
 .vs-card.old li{color:var(--muted)}
-.vs-card.old li::before{content:'✕';color:#c5485a;font-weight:900;flex:0 0 auto}
+.vs-card.old li::before{content:'✕';color:#c5485a;font-weight:900;position:absolute;left:0;top:0}
 .vs-card.new li{color:#eef0ff}
-.vs-card.new li::before{content:'✓';color:#7dffb0;font-weight:900;flex:0 0 auto}
+.vs-card.new li::before{content:'✓';color:#7dffb0;font-weight:900;position:absolute;left:0;top:0}
 .reviews .yt-line{margin:40px auto 0;font-size:14.5px;color:var(--muted)}
 .reviews .yt-line a{color:var(--blue);font-weight:700}
 @media (max-width:680px){.vs-grid{grid-template-columns:1fr}}
@@ -592,6 +599,7 @@ select.sf-in{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .trust-card h3{font-size:15.5px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em;color:#fff}
 .trust-card p{font-size:13.5px;color:#9CC7AC;line-height:1.75}
 @media (max-width:860px){.trust-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.trust-grid{grid-template-columns:1fr}}   /* 860px 규칙 뒤에 와야 이긴다 */
 
 /* ---------- 화면 미리보기 갤러리 ---------- */
 .gallery{background:var(--tint)}
@@ -694,7 +702,10 @@ details .faq-a b{color:var(--ink-soft);font-weight:800}
 }
 
 html.anim .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);transition-delay:var(--rd,0s)}
-.reveal.in{opacity:1;transform:none}
+/* ⚠ 2026-09-18 사고 원인: 이 규칙이 `.reveal.in`(0,2,0) 이라 위의 `html.anim .reveal`(0,2,1) 에 져서
+   .in 이 붙어도 opacity:0 이 그대로였다 → 12초 폴백(sweep 'all')이 anim 을 떼기 전까지 히어로 아래가 전부 빈 화면.
+   반드시 `html.anim .reveal.in` 으로 써서 숨기는 규칙보다 우선순위를 높게 둔다. */
+html.anim .reveal.in,.reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
